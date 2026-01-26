@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .cta-button {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+
+  .cta-primary {
+    @apply cta-button bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg;
+  }
+
+  .cta-secondary {
+    @apply cta-button border-2 border-blue-600 text-blue-600 hover:bg-blue-50;
+  }
+
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold text-slate-900 mb-4;
+  }
+
+  .section-subheading {
+    @apply text-xl text-slate-600 mb-12;
+  }
+}
