@@ -1,17 +1,59 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Process from '../components/Process.astro';
+import Benefits from '../components/Benefits.astro';
+import Technologies from '../components/Technologies.astro';
+import FAQ from '../components/FAQ.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Desarrollo Web Profesional para tu Negocio">
+  <Header />
+  
+  <Hero
+    title="Crece tu negocio con un sitio web profesional"
+    description="Transformamos tu idea en una herramienta digital que genera ingresos. Diseño moderno, rápido y optimizado para convertir visitas en clientes."
+    ctaText="Solicitar cotización"
+  />
+
+  <Services />
+
+  <section id="proceso">
+    <Process />
+  </section>
+
+  <Benefits />
+
+  <Technologies />
+
+  <section id="preguntas">
+    <FAQ />
+  </section>
+
+  <Contact />
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, sans-serif;
+    line-height: 1.5;
+    color: #1f2937;
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const services: Service[] = [
+  {
+    icon: '🌐',
+    title: 'Landing Pages',
+    description:
+      'Páginas optimizadas para convertir visitas en clientes. Diseño profesional que cuenta tu historia y genera confianza.',
+  },
+  {
+    icon: '🏢',
+    title: 'Sitios Web Corporativos',
+    description:
+      'Presencia profesional en internet. Portafolio, servicios y contacto integrados en una plataforma moderna.',
+  },
+  {
+    icon: '⚙️',
+    title: 'Sistemas Web Avanzados',
+    description:
+      'Aplicaciones personalizadas con base de datos. Desde inventarios hasta gestión completa de tu negocio.',
+  },
+  {
+    icon: '🔧',
+    title: 'Mantenimiento y Soporte',
+    description:
+      'Plan mensual de actualizaciones y mejoras. Tu sitio siempre seguro, rápido y funcionando al 100%.',
+  },
+];
+---
+
+<section
+  id="servicios"
+  class="py-24 bg-gradient-to-b from-slate-50 to-white"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="section-heading">
+        Servicios diseñados para tu negocio
+      </h2>
+      <p class="section-subheading">
+        Soluciones web que impulsan el crecimiento de tu empresa
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {
+        services.map((service) => (
+          <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-slate-200">
+            <div class="text-5xl mb-4">{service.icon}</div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-3">
+              {service.title}
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 bg-blue-50 rounded-2xl p-8 border border-blue-200">
+      <p class="text-center text-slate-700">
+        <strong>¿No sabes cuál es el servicio que necesitas?</strong>
+        <br />
+        <span class="text-slate-600"
+          >Cuéntanos tus objetivos y nosotros te recomendaremos la solución perfecta.</span
+        >
+      </p>
+    </div>
+  </div>
+</section>
