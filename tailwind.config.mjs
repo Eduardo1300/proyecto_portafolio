@@ -5,8 +5,10 @@ export default {
     extend: {
       colors: {
         primary: '#0f172a',
-        secondary: '#1e40af',
-        accent: '#3b82f6',
+        secondary: '#06b6d4',
+        accent: '#06b6d4',
+        'dark-card': '#111827',
+        'dark-bg': '#030712',
       },
     },
   },
