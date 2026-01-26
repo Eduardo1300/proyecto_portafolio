@@ -1,0 +1,179 @@
+---
+interface Contact {
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaUrl?: string;
+}
+
+const contact: Contact = {
+  title: 'Hablemos de tu proyecto',
+  description:
+    'Cuéntanos sobre tu negocio y objetivos. Te haremos una propuesta personalizada sin costo.',
+  ctaText: 'Enviar mensaje',
+};
+---
+
+<section
+  id="contacto"
+  class="py-24 bg-gradient-to-br from-slate-900 to-blue-900"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Content */}
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        {contact.title}
+      </h2>
+      <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+        {contact.description}
+      </p>
+    </div>
+
+    {/* Contact Form */}
+    <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+      <form class="space-y-6" name="contacto" method="POST" netlify>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label
+              for="nombre"
+              class="block text-sm font-semibold text-slate-900 mb-2"
+            >
+              Nombre completo
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              placeholder="Tu nombre"
+            />
+          </div>
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-semibold text-slate-900 mb-2"
+            >
+              Correo electrónico
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              placeholder="tu@email.com"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            for="telefono"
+            class="block text-sm font-semibold text-slate-900 mb-2"
+          >
+            Teléfono (opcional)
+          </label>
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+            placeholder="+1 (555) 000-0000"
+          />
+        </div>
+
+        <div>
+          <label
+            for="empresa"
+            class="block text-sm font-semibold text-slate-900 mb-2"
+          >
+            Nombre de tu empresa
+          </label>
+          <input
+            type="text"
+            id="empresa"
+            name="empresa"
+            required
+            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+            placeholder="Tu empresa"
+          />
+        </div>
+
+        <div>
+          <label
+            for="servicio"
+            class="block text-sm font-semibold text-slate-900 mb-2"
+          >
+            ¿Qué servicio te interesa?
+          </label>
+          <select
+            id="servicio"
+            name="servicio"
+            required
+            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+          >
+            <option value="">Selecciona una opción</option>
+            <option value="landing">Landing Page</option>
+            <option value="corporativo">Sitio Corporativo</option>
+            <option value="sistema">Sistema Web Avanzado</option>
+            <option value="mantenimiento">Mantenimiento y Soporte</option>
+            <option value="otro">Otro (cuéntame)</option>
+          </select>
+        </div>
+
+        <div>
+          <label
+            for="mensaje"
+            class="block text-sm font-semibold text-slate-900 mb-2"
+          >
+            Cuéntame sobre tu proyecto
+          </label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            required
+            rows="5"
+            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-none"
+            placeholder="Describe tu idea, objetivos y lo que esperas lograr..."
+          ></textarea>
+        </div>
+
+        <div class="flex items-start">
+          <input
+            type="checkbox"
+            id="terminos"
+            name="terminos"
+            required
+            class="mt-1 rounded border-slate-300"
+          />
+          <label for="terminos" class="ml-3 text-sm text-slate-600">
+            Acepto la política de privacidad y autorizo contacto para seguimiento.
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full cta-primary text-lg justify-center"
+        >
+          {contact.ctaText}
+        </button>
+      </form>
+    </div>
+
+    {/* Secondary message */}
+    <div class="mt-12 text-center">
+      <p class="text-slate-300 mb-4">
+        También puedes escribirnos directamente:
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center text-slate-300">
+        <a href="mailto:hola@ejemplo.com" class="hover:text-blue-400 transition">
+          📧 hola@ejemplo.com
+        </a>
+        <a href="https://wa.me/1234567890" class="hover:text-blue-400 transition">
+          💬 WhatsApp: +1 (555) 000-0000
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

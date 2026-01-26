@@ -1,0 +1,63 @@
+---
+interface Benefit {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const benefits: Benefit[] = [
+  {
+    icon: '⚡',
+    title: 'Entrega Rápida',
+    description:
+      'Landing pages en 1-2 semanas, sitios completos en 4-6 semanas. Sin demoras innecesarias.',
+  },
+  {
+    icon: '💬',
+    title: 'Comunicación Clara',
+    description:
+      'Reportes semanales, respuestas rápidas y explicaciones simples. Sabrás qué está pasando siempre.',
+  },
+  {
+    icon: '🎯',
+    title: 'Código Moderno',
+    description:
+      'Tecnologías actuales, optimizado para velocidad y seguridad. Tu proyecto durará años.',
+  },
+  {
+    icon: '🛡️',
+    title: 'Soporte Continuo',
+    description:
+      'No desaparecemos después del lanzamiento. Estamos aquí para ayudarte a crecer.',
+  },
+];
+---
+
+<section class="py-24 bg-gradient-to-r from-blue-600 to-blue-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        Ventajas de trabajar con nosotros
+      </h2>
+      <p class="text-xl text-blue-100">
+        Lo que nos diferencia en cada proyecto
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        benefits.map((benefit) => (
+          <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+            <div class="text-5xl mb-4">{benefit.icon}</div>
+            <h3 class="text-xl font-bold text-white mb-3">
+              {benefit.title}
+            </h3>
+            <p class="text-blue-100">
+              {benefit.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
