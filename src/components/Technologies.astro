@@ -1,0 +1,71 @@
+---
+interface Technology {
+  name: string;
+  description: string;
+}
+
+const technologies: Technology[] = [
+  {
+    name: 'React',
+    description: 'Interfaces dinámicas y responsivas que se adaptan a cualquier dispositivo.',
+  },
+  {
+    name: 'TypeScript',
+    description: 'Código seguro y confiable que previene errores antes de llegar a producción.',
+  },
+  {
+    name: 'Tailwind CSS',
+    description: 'Diseño limpio y moderno que se ve perfecto en cualquier pantalla.',
+  },
+  {
+    name: 'Node.js / NestJS',
+    description: 'Backend robusto que maneja millones de operaciones sin problemas.',
+  },
+  {
+    name: 'PostgreSQL',
+    description: 'Base de datos confiable que protege tu información con seguridad.',
+  },
+  {
+    name: 'Astro',
+    description: 'Sitios ultrarrápidos optimizados para que tus clientes encuentren lo que buscan.',
+  },
+];
+---
+
+<section class="py-24 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="section-heading">
+        Tecnología que funciona
+      </h2>
+      <p class="section-subheading">
+        Herramientas modernas que garantizan calidad y rendimiento
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {
+        technologies.map((tech) => (
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2">
+              {tech.name}
+            </h3>
+            <p class="text-slate-600">
+              {tech.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 bg-blue-50 border border-blue-200 rounded-2xl p-8 text-center">
+      <p class="text-slate-700 text-lg">
+        <strong>Entendemos la tecnología</strong> para que tú no tengas que hacerlo.
+        <br />
+        <span class="text-slate-600"
+          >Lo importante es que tu negocio crece. Lo técnico es nuestro problema.</span
+        >
+      </p>
+    </div>
+  </div>
+</section>
