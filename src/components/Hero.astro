@@ -10,48 +10,56 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
 ---
 
 <header
-  class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 overflow-hidden"
+  class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden"
 >
   {/* Decorative elements */}
   <div class="absolute inset-0 overflow-hidden">
     <div
-      class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+      class="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"
     >
     </div>
     <div
-      class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+      class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"
     >
     </div>
   </div>
 
   {/* Content */}
   <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <div class="mb-8">
+      <span class="section-label">Desarrollo web profesional</span>
+    </div>
+
     <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-      {title}
+      Transformo tu idea en una
+      <span class="text-cyan-500"> experiencia digital</span> que
+      conecta
     </h1>
 
-    <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-      {description}
+    <p class="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+      Desarrollo sitios web modernos, rápidos y optimizados para hacer crecer tu negocio. Sin complicaciones técnicas, con resultados reales.
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href={ctaUrl} class="cta-primary text-lg shadow-xl">
-        {ctaText}
+      <a href={ctaUrl} class="cta-primary text-lg shadow-xl inline-flex items-center gap-2 w-fit mx-auto sm:mx-0">
+        Empezar proyecto <span>→</span>
       </a>
-      <a href="#servicios" class="cta-secondary text-lg">
-        Ver servicios
+      <a href="#servicios" class="cta-secondary text-lg inline-flex items-center w-fit mx-auto sm:mx-0">
+        Ver portafolio
       </a>
     </div>
 
     {/* Trust indicators */}
-    <div class="mt-16 pt-12 border-t border-slate-700 space-y-4">
-      <p class="text-slate-400 text-sm">Empresas que confían en nuestro trabajo</p>
+    <div class="mt-16 pt-12 border-t border-slate-800 space-y-4">
+      <p class="text-slate-500 text-sm">Confianza de empresas como</p>
       <div
-        class="flex flex-wrap items-center justify-center gap-8 opacity-70"
+        class="flex flex-wrap items-center justify-center gap-8 opacity-60"
       >
-        <span class="text-slate-300 font-semibold">✓ Respuesta en 24h</span>
-        <span class="text-slate-300 font-semibold">✓ Proyectos a tiempo</span>
-        <span class="text-slate-300 font-semibold">✓ Soporte continuo</span>
+        <span class="text-slate-400 font-semibold text-sm">TechStart</span>
+        <span class="text-slate-400 font-semibold text-sm">GrowthCo</span>
+        <span class="text-slate-400 font-semibold text-sm">CoInnovate</span>
+        <span class="text-slate-400 font-semibold text-sm">NextLevel</span>
+        <span class="text-slate-400 font-semibold text-sm">BuildIt</span>
       </div>
     </div>
   </div>

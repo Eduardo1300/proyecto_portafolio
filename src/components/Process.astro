@@ -8,76 +8,64 @@ interface ProcessStep {
 const steps: ProcessStep[] = [
   {
     number: 1,
-    title: 'Análisis y Consultoría',
+    title: 'Conversación inicial',
     description:
-      'Conocemos tu negocio, objetivos y público. Escuchamos activamente para entender exactamente qué necesitas.',
+      'Entendemos tu negocio, objetivos y lo que necesitas. Sin compromiso, solo una charla para conocernos.',
   },
   {
     number: 2,
-    title: 'Propuesta Personalizada',
+    title: 'Propuesta y diseño',
     description:
-      'Te presentamos un plan detallado con funcionalidades, timeline y presupuesto justo. Sin sorpresas.',
+      'Creamos una propuesta clara con bocetos del diseño. Tú apruebas cada paso antes de continuar.',
   },
   {
     number: 3,
-    title: 'Desarrollo Profesional',
+    title: 'Desarrollo',
     description:
-      'Construimos tu proyecto con código moderno. Te mantenemos informado del avance cada paso del camino.',
+      'Construimos tu sitio con las mejores tecnologías. Tienes acceso a una vista previa en todo momento.',
   },
   {
     number: 4,
-    title: 'Entrega y Soporte',
+    title: 'Lanzamiento',
     description:
-      'Lanzamos tu sitio con éxito. Te enseñamos a usarlo y ofrecemos soporte continuo para el futuro.',
+      'Publicamos tu sitio y te enseñamos a usarlo. Soporte incluido para que nunca te quedes solo.',
   },
 ];
 ---
 
-<section class="py-24 bg-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="py-24 bg-slate-950">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
+      <span class="section-label">PROCESO</span>
       <h2 class="section-heading">
-        Nuestro proceso de trabajo
+        Simple, transparente, sin sorpresas
       </h2>
       <p class="section-subheading">
-        De la idea al lanzamiento: 4 pasos simples
+        Un proceso claro donde siempre sabrás en qué punto estamos y qué viene después.
       </p>
     </div>
 
-    <div class="relative">
-      {/* Connecting line */}
-      <div
-        class="hidden md:block absolute top-1/4 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800"
-      >
-      </div>
-
-      <div class="grid md:grid-cols-4 gap-8">
-        {
-          steps.map((step) => (
-            <div class="relative">
-              <div
-                class="bg-gradient-to-br from-blue-600 to-blue-800 w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6 shadow-lg relative z-10"
-              >
-                {step.number}
-              </div>
-              <div class="bg-slate-50 p-6 rounded-xl">
-                <h3 class="text-xl font-bold text-slate-900 mb-3 text-center">
-                  {step.title}
-                </h3>
-                <p class="text-slate-600 text-center text-sm leading-relaxed">
+    <div class="space-y-6">
+      {
+        steps.map((step) => (
+          <div class="border border-slate-800 rounded-xl p-8 hover:border-cyan-500/50 transition-all duration-300 bg-slate-900/50">
+            <div class="flex gap-6">
+              <div class="text-6xl font-bold text-cyan-500 min-w-24">{step.number.toString().padStart(2, '0')}</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                  <h3 class="text-xl font-bold text-white">
+                    {step.title}
+                  </h3>
+                </div>
+                <p class="text-slate-400 leading-relaxed">
                   {step.description}
                 </p>
               </div>
             </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <div class="mt-16 text-center">
-      <p class="text-lg text-slate-600">
-        Cada proyecto es único. Adaptamos nuestro proceso a tus necesidades y tiempos.
-      </p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

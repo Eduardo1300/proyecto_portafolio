@@ -7,52 +7,82 @@ interface Benefit {
 
 const benefits: Benefit[] = [
   {
-    icon: '⚡',
-    title: 'Entrega Rápida',
+    icon: '✅',
+    title: 'Entrega puntual',
     description:
-      'Landing pages en 1-2 semanas, sitios completos en 4-6 semanas. Sin demoras innecesarias.',
+      'Fechas claras desde el inicio. Si no cumplo, te devuelvo parte del dinero.',
+  },
+  {
+    icon: '📝',
+    title: 'Código tuyo',
+    description:
+      'Todo el código fuente es de tu propiedad. Sin dependencias ni ataduras.',
   },
   {
     icon: '💬',
-    title: 'Comunicación Clara',
+    title: 'Comunicación clara',
     description:
-      'Reportes semanales, respuestas rápidas y explicaciones simples. Sabrás qué está pasando siempre.',
+      'Sin tecnicismos. Te explico todo en un lenguaje que entiendas.',
   },
   {
-    icon: '🎯',
-    title: 'Código Moderno',
+    icon: '🤝',
+    title: 'Soporte incluido',
     description:
-      'Tecnologías actuales, optimizado para velocidad y seguridad. Tu proyecto durará años.',
+      '30 días de soporte gratuito después del lanzamiento.',
   },
   {
-    icon: '🛡️',
-    title: 'Soporte Continuo',
+    icon: '📊',
+    title: 'Resultados medibles',
     description:
-      'No desaparecemos después del lanzamiento. Estamos aquí para ayudarte a crecer.',
+      'Herramientas para que veas el impacto real en tu negocio.',
+  },
+  {
+    icon: '✨',
+    title: 'Garantía de satisfacción',
+    description:
+      'No pagas hasta que estés 100% satisfecho con el resultado.',
   },
 ];
 ---
 
-<section class="py-24 bg-gradient-to-r from-blue-600 to-blue-800">
+<section class="py-24 bg-slate-950">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-        Ventajas de trabajar con nosotros
-      </h2>
-      <p class="text-xl text-blue-100">
-        Lo que nos diferencia en cada proyecto
-      </p>
+    <div class="grid md:grid-cols-2 gap-12 mb-16">
+      <div>
+        <span class="section-label">BENEFICIOS</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          ¿Por qué trabajar conmigo?
+        </h2>
+        <p class="text-slate-400 leading-relaxed">
+          Más que un desarrollador, soy un aliado que entiende que tu tiempo es valioso y que necesitas resultados, no excusas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8">
+        <div class="text-center">
+          <p class="text-4xl font-bold text-cyan-500 mb-2">50+</p>
+          <p class="text-slate-400">Proyectos</p>
+        </div>
+        <div class="text-center">
+          <p class="text-4xl font-bold text-cyan-500 mb-2">100%</p>
+          <p class="text-slate-400">Satisfacción</p>
+        </div>
+        <div class="text-center">
+          <p class="text-4xl font-bold text-cyan-500 mb-2">5+</p>
+          <p class="text-slate-400">Años exp.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         benefits.map((benefit) => (
-          <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-            <div class="text-5xl mb-4">{benefit.icon}</div>
-            <h3 class="text-xl font-bold text-white mb-3">
+          <div class="bg-slate-900 border border-slate-800 p-8 rounded-xl hover:border-cyan-500/50 transition-all duration-300">
+            <div class="text-4xl mb-4 text-cyan-500">{benefit.icon}</div>
+            <h3 class="text-lg font-bold text-white mb-3">
               {benefit.title}
             </h3>
-            <p class="text-blue-100">
+            <p class="text-slate-400 text-sm leading-relaxed">
               {benefit.description}
             </p>
           </div>
