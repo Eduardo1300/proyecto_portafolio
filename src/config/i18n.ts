@@ -182,7 +182,7 @@ export const i18n = {
       title: '¿Listo para dar el siguiente paso?',
       description: 'Cuéntame sobre tu proyecto. Sin compromiso, sin presión. Solo una conversación para ver cómo puedo ayudarte.',
       cta: 'Agendar llamada gratis',
-      email: 'hola@devstudio.com',
+      email: 'contacto@christophervaldivia.tech',
       trust: 'Respondo en menos de 24 horas · Sin spam · 100% confidencial',
     },
     // Footer
@@ -365,7 +365,7 @@ export const i18n = {
       title: 'Ready for the next step?',
       description: 'Tell me about your project. No commitment, no pressure. Just a conversation to see how I can help you.',
       cta: 'Schedule free call',
-      email: 'hola@devstudio.com',
+      email: 'contacto@christophervaldivia.tech',
       trust: 'I respond in less than 24 hours · No spam · 100% confidential',
     },
     // Footer
