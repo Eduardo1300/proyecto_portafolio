@@ -5,58 +5,40 @@ const lang = defaultLanguage;
 const texts = i18n[lang];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-xl" role="banner">
-  <div class="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 h-14 md:h-16 flex items-center justify-between">
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl" role="banner">
+  <div class="container flex h-16 items-center justify-between">
     {/* Logo */}
-    <a href="/" class="text-base md:text-xl font-bold text-white whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2" aria-label="Dev Studio - Inicio">
+    <a href="/" class="text-xl font-bold tracking-tight focus:outline-none focus:ring-2 focus:ring-primary rounded px-2" aria-label="Dev Studio - Inicio">
       dev<span class="text-gradient">studio</span>
     </a>
 
     {/* Navigation */}
-    <nav class="hidden md:flex items-center gap-4 lg:gap-8" aria-label="Navegación principal">
-      <a href="#servicios" class="text-xs lg:text-sm text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 py-1 nav-servicios" aria-current="false">
+    <nav class="hidden md:flex items-center gap-8" aria-label="Navegación principal">
+      <a href="#servicios" class="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1 nav-servicios" aria-current="false">
         {texts.nav.servicios}
       </a>
-      <a href="#proceso" class="text-xs lg:text-sm text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 py-1 nav-proceso">
+      <a href="#proceso" class="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1 nav-proceso">
         {texts.nav.proceso}
       </a>
-      <a href="#beneficios" class="text-xs lg:text-sm text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 py-1 nav-beneficios">
+      <a href="#beneficios" class="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1 nav-beneficios">
         {texts.nav.beneficios}
       </a>
-      <a href="#faq" class="text-xs lg:text-sm text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 py-1 nav-faq">
+      <a href="#faq" class="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1 nav-faq">
         {texts.nav.faq}
       </a>
-      <a
-        href="#contacto"
-        class="cta-primary glow px-4 lg:px-6 py-2 text-xs lg:text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 focus:ring-cyan-500 rounded nav-contacto"
-      >
-        {texts.nav.contacto}
-      </a>
-
-      {/* Language Switcher */}
-      <div class="flex items-center gap-2 ml-4 pl-4 border-l border-slate-700" aria-label="Selector de idioma">
-        <button 
-          id="lang-es"
-          class="lang-btn px-2.5 py-1 rounded text-xs lg:text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-cyan-500 text-slate-950"
-          aria-label="Cambiar a español"
-          aria-current="true"
-        >
-          ES
-        </button>
-        <button 
-          id="lang-en"
-          class="lang-btn px-2.5 py-1 rounded text-xs lg:text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-slate-900/50 text-slate-400 hover:text-white border border-slate-800"
-          aria-label="Cambiar a inglés"
-          aria-current="false"
-        >
-          EN
-        </button>
-      </div>
     </nav>
+
+    {/* Contact Button */}
+    <a
+      href="#contacto"
+      class="glow px-6 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary nav-contacto"
+    >
+      {texts.nav.contacto}
+    </a>
 
     {/* Mobile menu button */}
     <button 
-      class="md:hidden text-white text-xl p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded" 
+      class="md:hidden text-foreground text-xl p-2 focus:outline-none focus:ring-2 focus:ring-primary rounded" 
       id="mobile-menu"
       aria-label="Abrir menú"
       aria-expanded="false"
@@ -69,63 +51,40 @@ const texts = i18n[lang];
   {/* Mobile menu */}
   <nav
     id="mobile-nav"
-    class="hidden md:hidden border-t border-slate-800 bg-slate-950"
+    class="hidden md:hidden border-t border-border/50 bg-background/95 backdrop-blur"
     aria-label="Navegación móvil"
   >
-    <div class="px-3 sm:px-4 py-3 space-y-2">
+    <div class="container px-0 py-4 space-y-2">
       <a
         href="#servicios"
-        class="block text-sm text-slate-400 hover:text-white py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 transition-colors nav-servicios-mobile"
+        class="block text-sm text-muted-foreground hover:text-foreground py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors nav-servicios-mobile"
       >
         {texts.nav.servicios}
       </a>
       <a
         href="#proceso"
-        class="block text-sm text-slate-400 hover:text-white py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 transition-colors nav-proceso-mobile"
+        class="block text-sm text-muted-foreground hover:text-foreground py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors nav-proceso-mobile"
       >
         {texts.nav.proceso}
       </a>
       <a
         href="#beneficios"
-        class="block text-sm text-slate-400 hover:text-white py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 transition-colors nav-beneficios-mobile"
+        class="block text-sm text-muted-foreground hover:text-foreground py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors nav-beneficios-mobile"
       >
         {texts.nav.beneficios}
       </a>
       <a
         href="#faq"
-        class="block text-sm text-slate-400 hover:text-white py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-2 transition-colors nav-faq-mobile"
+        class="block text-sm text-muted-foreground hover:text-foreground py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary rounded transition-colors nav-faq-mobile"
       >
         {texts.nav.faq}
       </a>
       <a
         href="#contacto"
-        class="block cta-primary text-center py-2 mt-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded transition-colors nav-contacto-mobile"
+        class="block glow w-full mx-4 px-4 py-2.5 text-center text-sm font-medium bg-primary text-primary-foreground rounded-lg transition-all hover:shadow-lg nav-contacto-mobile"
       >
         {texts.nav.contacto}
       </a>
-
-      {/* Language Switcher Mobile */}
-      <div class="border-t border-slate-700 mt-3 pt-3">
-        <p class="text-xs text-slate-500 mb-2 px-2 lang-label-mobile">{texts.footer.language}</p>
-        <div class="flex items-center gap-2 px-2">
-          <button 
-            id="lang-es-mobile"
-            class="lang-btn-mobile flex-1 px-2 py-1.5 rounded text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-cyan-500 text-slate-950"
-            aria-label="Cambiar a español"
-            aria-current="true"
-          >
-            ES
-          </button>
-          <button 
-            id="lang-en-mobile"
-            class="lang-btn-mobile flex-1 px-2 py-1.5 rounded text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-slate-900/50 text-slate-400 hover:text-white border border-slate-800"
-            aria-label="Cambiar a inglés"
-            aria-current="false"
-          >
-            EN
-          </button>
-        </div>
-      </div>
     </div>
   </nav>
 </header>
@@ -141,7 +100,6 @@ const texts = i18n[lang];
       mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
     });
 
-    // Close menu when clicking a link
     const links = mobileNav.querySelectorAll('a');
     links.forEach((link) => {
       link.addEventListener('click', () => {
@@ -150,7 +108,6 @@ const texts = i18n[lang];
       });
     });
     
-    // Cerrar menú con Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !mobileNav.classList.contains('hidden')) {
         mobileNav.classList.add('hidden');
@@ -160,127 +117,24 @@ const texts = i18n[lang];
     });
   }
 
-  // Language Switcher functionality
-  function setLanguage(lang: string) {
-    // Obtener idioma actual
-    const currentLang = document.documentElement.dataset.lang || 'es';
-    
-    // Solo recargar si el idioma es diferente
-    if (lang === currentLang) {
-      console.log(`Ya estás en ${lang === 'es' ? 'Español' : 'English'}`);
-      return;
-    }
-    
-    // Guardar idioma en localStorage
-    localStorage.setItem('preferredLanguage', lang);
-    
-    // Actualizar botones
-    document.querySelectorAll('.lang-btn, .lang-btn-mobile').forEach(btn => {
-      btn.classList.remove('bg-cyan-500', 'text-slate-950', 'border-slate-800');
-      btn.classList.add('bg-slate-900/50', 'text-slate-400', 'border', 'border-slate-800');
-      btn.setAttribute('aria-current', 'false');
-    });
-
-    // Marcar botón activo
-    const activeButtons = document.querySelectorAll(`#lang-${lang}, #lang-${lang}-mobile`);
-    activeButtons.forEach(btn => {
-      btn.classList.remove('bg-slate-900/50', 'text-slate-400', 'border', 'border-slate-800');
-      btn.classList.add('bg-cyan-500', 'text-slate-950');
-      btn.setAttribute('aria-current', 'true');
-    });
-
-    // Actualizar el idioma en el HTML element
-    document.documentElement.dataset.lang = lang;
-    document.documentElement.lang = lang;
-
-    // Mostrar notificación simple
-    console.log(`Idioma cambiado a: ${lang === 'es' ? 'Español' : 'English'}`);
-
-    // Disparar evento para actualizar contenido
-    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
-  }
-
-  // Función para inicializar sin recargar
-  function initializeLanguage() {
-    const savedLang = localStorage.getItem('preferredLanguage') || 'es';
-    
-    // Actualizar botones sin recargar
-    document.querySelectorAll('.lang-btn, .lang-btn-mobile').forEach(btn => {
-      btn.classList.remove('bg-cyan-500', 'text-slate-950', 'border-slate-800');
-      btn.classList.add('bg-slate-900/50', 'text-slate-400', 'border', 'border-slate-800');
-      btn.setAttribute('aria-current', 'false');
-    });
-
-    const activeButtons = document.querySelectorAll(`#lang-${savedLang}, #lang-${savedLang}-mobile`);
-    activeButtons.forEach(btn => {
-      btn.classList.remove('bg-slate-900/50', 'text-slate-400', 'border', 'border-slate-800');
-      btn.classList.add('bg-cyan-500', 'text-slate-950');
-      btn.setAttribute('aria-current', 'true');
-    });
-
-    // Actualizar el idioma en el HTML element
-    document.documentElement.dataset.lang = savedLang;
-    document.documentElement.lang = savedLang;
-
-    // Disparar evento sin recargar
-    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: savedLang } }));
-  }
-
+  import { i18n } from '../config/i18n';
+  
   function updateNavTexts() {
     const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
     const texts = i18n[lang];
     
-    // Desktop nav
-    const navServicios = document.querySelector('.nav-servicios');
-    const navProceso = document.querySelector('.nav-proceso');
-    const navBeneficios = document.querySelector('.nav-beneficios');
-    const navFaq = document.querySelector('.nav-faq');
-    const navContacto = document.querySelector('.nav-contacto');
+    document.querySelector('.nav-servicios')!.textContent = texts.nav.servicios;
+    document.querySelector('.nav-proceso')!.textContent = texts.nav.proceso;
+    document.querySelector('.nav-beneficios')!.textContent = texts.nav.beneficios;
+    document.querySelector('.nav-faq')!.textContent = texts.nav.faq;
+    document.querySelector('.nav-contacto')!.textContent = texts.nav.contacto;
     
-    if (navServicios) navServicios.textContent = texts.nav.servicios;
-    if (navProceso) navProceso.textContent = texts.nav.proceso;
-    if (navBeneficios) navBeneficios.textContent = texts.nav.beneficios;
-    if (navFaq) navFaq.textContent = texts.nav.faq;
-    if (navContacto) navContacto.textContent = texts.nav.contacto;
-    
-    // Mobile nav
-    const navServiciosMobile = document.querySelector('.nav-servicios-mobile');
-    const navProcesoMobile = document.querySelector('.nav-proceso-mobile');
-    const navBeneficiosMobile = document.querySelector('.nav-beneficios-mobile');
-    const navFaqMobile = document.querySelector('.nav-faq-mobile');
-    const navContactoMobile = document.querySelector('.nav-contacto-mobile');
-    
-    if (navServiciosMobile) navServiciosMobile.textContent = texts.nav.servicios;
-    if (navProcesoMobile) navProcesoMobile.textContent = texts.nav.proceso;
-    if (navBeneficiosMobile) navBeneficiosMobile.textContent = texts.nav.beneficios;
-    if (navFaqMobile) navFaqMobile.textContent = texts.nav.faq;
-    if (navContactoMobile) navContactoMobile.textContent = texts.nav.contacto;
-    
-    // Language label mobile
-    const langLabelMobile = document.querySelector('.lang-label-mobile');
-    if (langLabelMobile) langLabelMobile.textContent = texts.footer.language;
+    document.querySelector('.nav-servicios-mobile')!.textContent = texts.nav.servicios;
+    document.querySelector('.nav-proceso-mobile')!.textContent = texts.nav.proceso;
+    document.querySelector('.nav-beneficios-mobile')!.textContent = texts.nav.beneficios;
+    document.querySelector('.nav-faq-mobile')!.textContent = texts.nav.faq;
+    document.querySelector('.nav-contacto-mobile')!.textContent = texts.nav.contacto;
   }
   
   document.addEventListener('languageChanged', updateNavTexts);
-
-  // Botones desktop
-  const langEsBtn = document.getElementById('lang-es');
-  const langEnBtn = document.getElementById('lang-en');
-
-  if (langEsBtn) langEsBtn.addEventListener('click', () => setLanguage('es'));
-  if (langEnBtn) langEnBtn.addEventListener('click', () => setLanguage('en'));
-
-  // Botones mobile
-  const langEsMobileBtn = document.getElementById('lang-es-mobile');
-  const langEnMobileBtn = document.getElementById('lang-en-mobile');
-
-  if (langEsMobileBtn) langEsMobileBtn.addEventListener('click', () => setLanguage('es'));
-  if (langEnMobileBtn) langEnMobileBtn.addEventListener('click', () => setLanguage('en'));
-
-  // Inicializar idioma guardado al cargar sin recargar
-  initializeLanguage();
-  
-  // Importar i18n después de todo
-  import { i18n } from '../config/i18n';
-  updateNavTexts();
 </script>
