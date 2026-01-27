@@ -1,0 +1,32 @@
+---
+import { languages, defaultLanguage } from '../config/i18n';
+
+interface Props {
+  currentLang?: string;
+}
+
+const { currentLang = defaultLanguage } = Astro.props;
+---
+
+<div class="language-switcher flex items-center gap-2" aria-label="Selector de idioma">
+  {Object.entries(languages).map(([lang, label]) => (
+    <a
+      href={`/${lang}/`}
+      class={`px-3 py-1.5 rounded text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 ${
+        lang === currentLang
+          ? 'bg-cyan-500 text-slate-950'
+          : 'bg-slate-900/50 text-slate-400 hover:text-white border border-slate-800'
+      }`}
+      aria-current={lang === currentLang ? 'page' : 'false'}
+      aria-label={`Cambiar a ${label}`}
+    >
+      {lang.toUpperCase()}
+    </a>
+  ))}
+</div>
+
+<style>
+  .language-switcher {
+    transition: all 0.2s ease-in-out;
+  }
+</style>

@@ -51,27 +51,35 @@ const steps: ProcessStep[] = [
       <div class="space-y-4 md:space-y-6">
         {
           steps.map((step, index) => (
-            <div class="relative flex gap-4 md:gap-6 lg:gap-10 p-5 md:p-6 lg:p-8 rounded-2xl border border-slate-800 bg-slate-900/50 hover:border-cyan-500/30 transition-all group">
+            <div 
+              class="relative flex gap-4 md:gap-6 lg:gap-10 p-5 md:p-6 lg:p-8 rounded-2xl border border-slate-800 bg-slate-900/50 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 transition-all duration-300 group focus-within:ring-2 focus-within:ring-cyan-500"
+              role="article"
+              aria-label={`Paso ${index + 1}: ${step.title}`}
+              data-step={index}
+            >
               {/* Number */}
               <div class="flex-shrink-0 pt-1">
-                <span class="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient opacity-50 group-hover:opacity-100 transition-opacity leading-none">
+                <span 
+                  class="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 leading-none"
+                  aria-hidden="true"
+                >
                   {step.number}
                 </span>
               </div>
 
               {/* Content */}
               <div class="flex-1 min-w-0">
-                <h3 class="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+                <h3 class="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3 group-hover:text-cyan-400 transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
                   {step.description}
                 </p>
               </div>
 
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div class="absolute left-8 md:left-12 top-full h-4 md:h-6 w-px bg-slate-700" />
+                <div class="absolute left-8 md:left-12 top-full h-4 md:h-6 w-px bg-gradient-to-b from-slate-700 to-transparent transition-all duration-300 group-hover:from-cyan-500/50" aria-hidden="true" />
               )}
             </div>
           ))
