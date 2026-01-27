@@ -11,18 +11,19 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
 
 <section
   class="relative min-h-screen flex items-center justify-center pt-20 md:pt-16 px-4 md:px-0 hero-gradient overflow-hidden"
+  aria-label="Sección principal"
 >
-  {/* Decorative elements */}
-  <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute top-1/4 left-1/4 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-    <div class="absolute bottom-1/4 right-1/4 w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+  {/* Decorative elements - hidden from screen readers */}
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/4 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-cyan-500/5 rounded-full blur-3xl animate-float" />
+    <div class="absolute bottom-1/4 right-1/4 w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow" />
   </div>
 
   <div class="w-full max-w-6xl relative z-10 mx-auto">
     <div class="max-w-4xl mx-auto text-center">
       {/* Badge */}
-      <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 mb-6 md:mb-8 animate-fade-up opacity-0">
-        <span class="text-cyan-400 text-sm sm:text-base">✨</span>
+      <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 mb-6 md:mb-8 animate-fade-up opacity-0" role="status" aria-live="polite">
+        <span aria-hidden="true" class="text-cyan-400 text-sm sm:text-base">✨</span>
         <span class="text-xs sm:text-sm text-slate-400">Desarrollo web profesional</span>
       </div>
 
@@ -41,11 +42,19 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
 
       {/* CTAs */}
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-up opacity-0 stagger-3 px-2">
-        <a href={ctaUrl} class="cta-primary text-base sm:text-lg glow group px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+        <a 
+          href={ctaUrl} 
+          class="cta-primary text-base sm:text-lg glow group px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center gap-2 w-full sm:w-auto justify-center focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded transition-all hover:scale-105 active:scale-95"
+          aria-label="Empezar proyecto ahora"
+        >
           Empezar proyecto
-          <span class="group-hover:translate-x-1 transition-transform">→</span>
+          <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">→</span>
         </a>
-        <a href="#servicios" class="cta-secondary text-base sm:text-lg px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center w-full sm:w-auto justify-center">
+        <a 
+          href="#servicios" 
+          class="cta-secondary text-base sm:text-lg px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center w-full sm:w-auto justify-center focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded transition-all hover:scale-105 active:scale-95"
+          aria-label="Ver nuestros servicios"
+        >
           Ver servicios
         </a>
       </div>
@@ -53,9 +62,9 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
       {/* Trust indicators */}
       <div class="mt-12 md:mt-16 pt-12 md:pt-16 border-t border-slate-800/50 animate-fade-up opacity-0 stagger-4">
         <p class="text-xs sm:text-sm text-slate-500 mb-6">Confianza de empresas como</p>
-        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 opacity-50 px-2">
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 opacity-50 px-2" role="list" aria-label="Empresas clientes">
           {["TechStart", "GrowthCo", "Innovate", "NextLevel", "BuildIt"].map((company) => (
-            <span class="text-sm sm:text-base md:text-lg font-semibold text-slate-400 whitespace-nowrap">
+            <span class="text-sm sm:text-base md:text-lg font-semibold text-slate-400 whitespace-nowrap" role="listitem">
               {company}
             </span>
           ))}
@@ -64,25 +73,3 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0.2;
-    }
-    50% {
-      opacity: 0.4;
-    }
-  }
-</style>
