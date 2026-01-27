@@ -14,43 +14,43 @@ const contact: Contact = {
 };
 ---
 
-<section id="contacto" class="py-24 md:py-32 bg-slate-900/50 relative overflow-hidden">
+<section id="contacto" class="py-16 md:py-24 lg:py-32 bg-slate-900/50 relative overflow-hidden px-4 sm:px-6 lg:px-8">
   {/* Background decoration */}
   <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl" />
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 sm:w-[500px] md:w-[600px] h-96 sm:h-[500px] md:h-[600px] bg-cyan-500/5 rounded-full blur-3xl" />
   </div>
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div class="max-w-6xl mx-auto relative z-10">
     <div class="max-w-3xl mx-auto text-center">
       {/* Icon */}
-      <div class="w-16 h-16 mx-auto mb-8 rounded-2xl bg-cyan-500/10 flex items-center justify-center glow">
-        <span class="text-3xl">✉️</span>
+      <div class="w-14 md:w-16 h-14 md:h-16 mx-auto mb-6 md:mb-8 rounded-2xl bg-cyan-500/10 flex items-center justify-center glow">
+        <span class="text-2xl md:text-3xl">✉️</span>
       </div>
 
       {/* Headline */}
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 px-2">
         ¿Listo para dar el siguiente paso?
       </h2>
 
       {/* Description */}
-      <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg md:text-xl text-slate-400 mb-8 md:mb-10 max-w-2xl mx-auto px-2">
         Cuéntame sobre tu proyecto. Sin compromiso, sin presión. 
         Solo una conversación para ver cómo puedo ayudarte.
       </p>
 
       {/* CTA buttons */}
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#" class="cta-primary glow px-8 text-base inline-flex items-center gap-2">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 px-2">
+        <a href="#" class="cta-primary glow px-6 md:px-8 py-2 md:py-3 text-base md:text-lg inline-flex items-center gap-2 w-full sm:w-auto justify-center">
           Agendar llamada gratis
           <span>→</span>
         </a>
-        <a href="mailto:hola@devstudio.com" class="cta-secondary px-8 text-base">
+        <a href="mailto:hola@devstudio.com" class="cta-secondary px-6 md:px-8 py-2 md:py-3 text-base md:text-lg w-full sm:w-auto text-center">
           hola@devstudio.com
         </a>
       </div>
 
       {/* Trust note */}
-      <p class="text-sm text-slate-500 mt-8">
+      <p class="text-xs md:text-sm text-slate-500 mt-8 px-2">
         Respondo en menos de 24 horas · Sin spam · 100% confidencial
       </p>
     </div>

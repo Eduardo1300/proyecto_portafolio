@@ -10,52 +10,52 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
 ---
 
 <section
-  class="relative min-h-screen flex items-center justify-center pt-16 hero-gradient overflow-hidden"
+  class="relative min-h-screen flex items-center justify-center pt-20 md:pt-16 px-4 md:px-0 hero-gradient overflow-hidden"
 >
   {/* Decorative elements */}
   <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+    <div class="absolute top-1/4 left-1/4 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+    <div class="absolute bottom-1/4 right-1/4 w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 bg-cyan-500/10 rounded-full blur-3xl" />
   </div>
 
-  <div class="container relative z-10">
+  <div class="w-full max-w-6xl relative z-10 mx-auto">
     <div class="max-w-4xl mx-auto text-center">
       {/* Badge */}
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 mb-8 animate-fade-up opacity-0">
-        <span class="text-cyan-400">✨</span>
-        <span class="text-sm text-slate-400">Desarrollo web profesional</span>
+      <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 mb-6 md:mb-8 animate-fade-up opacity-0">
+        <span class="text-cyan-400 text-sm sm:text-base">✨</span>
+        <span class="text-xs sm:text-sm text-slate-400">Desarrollo web profesional</span>
       </div>
 
       {/* Main headline */}
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 animate-fade-up opacity-0 stagger-1">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-4 md:mb-6 animate-fade-up opacity-0 stagger-1 leading-tight">
         Transformo tu idea en una{" "}
-        <span class="text-gradient">experiencia digital</span>{" "}
+        <span class="text-gradient block sm:inline">experiencia digital</span>{" "}
         que conecta
       </h1>
 
       {/* Subtitle */}
-      <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-up opacity-0 stagger-2">
+      <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 md:mb-10 animate-fade-up opacity-0 stagger-2 px-2">
         Desarrollo sitios web modernos, rápidos y optimizados para hacer crecer tu negocio. 
         Sin complicaciones técnicas, con resultados reales.
       </p>
 
       {/* CTAs */}
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up opacity-0 stagger-3">
-        <a href={ctaUrl} class="cta-primary text-lg glow group px-8 inline-flex items-center gap-2">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-up opacity-0 stagger-3 px-2">
+        <a href={ctaUrl} class="cta-primary text-base sm:text-lg glow group px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
           Empezar proyecto
           <span class="group-hover:translate-x-1 transition-transform">→</span>
         </a>
-        <a href="#servicios" class="cta-secondary text-lg px-8 inline-flex items-center">
-          Ver portafolio
+        <a href="#servicios" class="cta-secondary text-base sm:text-lg px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center w-full sm:w-auto justify-center">
+          Ver servicios
         </a>
       </div>
 
       {/* Trust indicators */}
-      <div class="mt-16 pt-16 border-t border-slate-800/50 animate-fade-up opacity-0 stagger-4">
-        <p class="text-sm text-slate-500 mb-6">Confianza de empresas como</p>
-        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-50">
+      <div class="mt-12 md:mt-16 pt-12 md:pt-16 border-t border-slate-800/50 animate-fade-up opacity-0 stagger-4">
+        <p class="text-xs sm:text-sm text-slate-500 mb-6">Confianza de empresas como</p>
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 opacity-50 px-2">
           {["TechStart", "GrowthCo", "Innovate", "NextLevel", "BuildIt"].map((company) => (
-            <span class="text-lg font-semibold text-slate-400">
+            <span class="text-sm sm:text-base md:text-lg font-semibold text-slate-400 whitespace-nowrap">
               {company}
             </span>
           ))}
