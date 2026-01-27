@@ -74,6 +74,23 @@ const {
   </head>
   <body>
     <slot />
+
+    {/* Script para detectar idioma guardado */}
+    <script>
+      // Obtener idioma guardado
+      const savedLanguage = localStorage.getItem('preferredLanguage') || 'es';
+      
+      // Aplicar el idioma al HTML
+      document.documentElement.lang = savedLanguage;
+      document.documentElement.setAttribute('data-lang', savedLanguage);
+      
+      // Escuchar cambios de idioma
+      window.addEventListener('languagechange', (event: any) => {
+        const newLang = event.detail.language;
+        document.documentElement.lang = newLang;
+        document.documentElement.setAttribute('data-lang', newLang);
+      });
+    </script>
   </body>
 </html>
 

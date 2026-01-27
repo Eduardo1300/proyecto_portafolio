@@ -1,49 +1,29 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
 interface ProcessStep {
   number: string;
   title: string;
   description: string;
 }
 
-const steps: ProcessStep[] = [
-  {
-    number: '01',
-    title: 'Conversación inicial',
-    description:
-      'Entendemos tu negocio, objetivos y lo que necesitas. Sin compromiso, solo una charla para conocernos.',
-  },
-  {
-    number: '02',
-    title: 'Propuesta y diseño',
-    description:
-      'Creamos una propuesta clara con bocetos del diseño. Tú apruebas cada paso antes de continuar.',
-  },
-  {
-    number: '03',
-    title: 'Desarrollo',
-    description:
-      'Construimos tu sitio con las mejores tecnologías. Tienes acceso a una vista previa en todo momento.',
-  },
-  {
-    number: '04',
-    title: 'Lanzamiento',
-    description:
-      'Publicamos tu sitio y te enseñamos a usarlo. Soporte incluido para que nunca te quedes solo.',
-  },
-];
+const lang = defaultLanguage;
+const texts = i18n[lang];
+
+const steps: ProcessStep[] = texts.process.steps;
 ---
 
-<section id="proceso" class="py-16 md:py-24 lg:py-32 bg-slate-900/50">
+<section id="proceso" class="py-16 md:py-24 lg:py-32 bg-slate-900/50" data-i18n="process">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto text-center mb-12 md:mb-16">
-      <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block">
-        Proceso
+      <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block process-label">
+        {texts.process.label}
       </span>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6">
-        Simple, transparente, sin sorpresas
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 process-title">
+        {texts.process.title}
       </h2>
-      <p class="text-slate-400 text-base sm:text-lg px-2">
-        Un proceso claro donde siempre sabrás en qué punto estamos y qué viene después.
+      <p class="text-slate-400 text-base sm:text-lg px-2 process-description">
+        {texts.process.description}
       </p>
     </div>
 
@@ -69,10 +49,10 @@ const steps: ProcessStep[] = [
 
               {/* Content */}
               <div class="flex-1 min-w-0">
-                <h3 class="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                <h3 class="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3 group-hover:text-cyan-400 transition-colors duration-300 process-step-title">
                   {step.title}
                 </h3>
-                <p class="text-slate-400 text-sm md:text-base leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed group-hover:text-slate-300 transition-colors duration-300 process-step-description">
                   {step.description}
                 </p>
               </div>
@@ -88,3 +68,40 @@ const steps: ProcessStep[] = [
     </div>
   </div>
 </section>
+
+<script>
+  import { i18n } from '../config/i18n';
+  
+  function updateProcessTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    // Update label
+    const labelEl = document.querySelector('.process-label');
+    if (labelEl) labelEl.textContent = texts.process.label;
+    
+    // Update title
+    const titleEl = document.querySelector('.process-title');
+    if (titleEl) titleEl.textContent = texts.process.title;
+    
+    // Update description
+    const descEl = document.querySelector('.process-description');
+    if (descEl) descEl.textContent = texts.process.description;
+    
+    // Update process steps
+    const stepElements = document.querySelectorAll('[data-step]');
+    stepElements.forEach((el, index) => {
+      const titleEl = el.querySelector('.process-step-title');
+      const descEl = el.querySelector('.process-step-description');
+      
+      if (titleEl) titleEl.textContent = texts.process.steps[index]?.title || '';
+      if (descEl) descEl.textContent = texts.process.steps[index]?.description || '';
+    });
+  }
+  
+  // Update on language change
+  document.addEventListener('languageChanged', updateProcessTexts);
+  
+  // Initial update
+  updateProcessTexts();
+</script>

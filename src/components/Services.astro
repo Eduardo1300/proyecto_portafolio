@@ -1,46 +1,45 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
 interface Service {
   icon: string;
   title: string;
   description: string;
 }
 
+const lang = defaultLanguage;
+const texts = i18n[lang];
+
 const services: Service[] = [
   {
     icon: '🌐',
-    title: 'Sitios Web',
-    description:
-      'Páginas corporativas, portafolios y landing pages que convierten visitantes en clientes.',
+    title: texts.services.items[0].title,
+    description: texts.services.items[0].description,
   },
   {
     icon: '🛍️',
-    title: 'Tiendas Online',
-    description:
-      'E-commerce completos con pasarela de pagos, inventario y gestión de pedidos.',
+    title: texts.services.items[1].title,
+    description: texts.services.items[1].description,
   },
   {
     icon: '📱',
-    title: 'Diseño Responsive',
-    description:
-      'Tu sitio se verá perfecto en cualquier dispositivo, desde móvil hasta desktop.',
+    title: texts.services.items[2].title,
+    description: texts.services.items[2].description,
   },
   {
     icon: '⚡',
-    title: 'Optimización',
-    description:
-      'Sitios rápidos que cargan en segundos y ofrecen la mejor experiencia al usuario.',
+    title: texts.services.items[3].title,
+    description: texts.services.items[3].description,
   },
   {
     icon: '🔍',
-    title: 'SEO Básico',
-    description:
-      'Estructura optimizada para que Google encuentre y posicione tu sitio web.',
+    title: texts.services.items[4].title,
+    description: texts.services.items[4].description,
   },
   {
     icon: '📊',
-    title: 'Analytics',
-    description:
-      'Integración con herramientas para medir el rendimiento de tu sitio.',
+    title: texts.services.items[5].title,
+    description: texts.services.items[5].description,
   },
 ];
 ---
@@ -48,17 +47,18 @@ const services: Service[] = [
 <section
   id="servicios"
   class="py-16 md:py-24 lg:py-32 bg-slate-950"
+  data-i18n="services"
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto text-center mb-12 md:mb-16">
-      <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block">
-        Servicios
+      <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block services-label">
+        {texts.services.label}
       </span>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6">
-        Todo lo que necesitas para estar online
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 services-title">
+        {texts.services.title}
       </h2>
-      <p class="text-slate-400 text-base sm:text-lg px-2">
-        Soluciones completas adaptadas a las necesidades de tu negocio, sin tecnicismos y con resultados medibles.
+      <p class="text-slate-400 text-base sm:text-lg px-2 services-description">
+        {texts.services.description}
       </p>
     </div>
 
@@ -91,3 +91,40 @@ const services: Service[] = [
     </div>
   </div>
 </section>
+
+<script>
+  import { i18n } from '../config/i18n';
+  
+  function updateServicesTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    // Update label
+    const labelEl = document.querySelector('.services-label');
+    if (labelEl) labelEl.textContent = texts.services.label;
+    
+    // Update title
+    const titleEl = document.querySelector('.services-title');
+    if (titleEl) titleEl.textContent = texts.services.title;
+    
+    // Update description
+    const descEl = document.querySelector('.services-description');
+    if (descEl) descEl.textContent = texts.services.description;
+    
+    // Update service items
+    const serviceElements = document.querySelectorAll('[data-service]');
+    serviceElements.forEach((el, index) => {
+      const titleEl = el.querySelector('h3');
+      const descEl = el.querySelector('p');
+      
+      if (titleEl) titleEl.textContent = texts.services.items[index]?.title || '';
+      if (descEl) descEl.textContent = texts.services.items[index]?.description || '';
+    });
+  }
+  
+  // Update on language change
+  document.addEventListener('languageChanged', updateServicesTexts);
+  
+  // Initial update
+  updateServicesTexts();
+</script>

@@ -1,0 +1,42 @@
+---
+// Componente para manejar traducciones dinámicamente
+// Importa esto en tus componentes para obtener el idioma actual
+
+import { getTranslation, i18n, defaultLanguage } from '../config/i18n';
+
+interface Props {
+  currentLang?: string;
+}
+
+const { currentLang = defaultLanguage } = Astro.props;
+
+export const translations = i18n;
+export const getCurrentLanguage = () => {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('preferredLanguage') || defaultLanguage;
+  }
+  return defaultLanguage;
+};
+
+export const translate = (key: string, lang: string = defaultLanguage) => {
+  return getTranslation(lang, key);
+};
+---
+
+{/* Componente cliente para escuchar cambios de idioma */}
+<script>
+  // Este script se ejecuta en el cliente y escucha cambios de idioma
+  window.addEventListener('languagechange', (event: any) => {
+    const newLanguage = event.detail.language;
+    console.log('Idioma actualizado a:', newLanguage);
+    
+    // Aquí puedes agregar lógica para actualizar el contenido dinámicamente
+    // Por ejemplo, recargar la página o actualizar componentes específicos
+    
+    // Opción 1: Recargar la página (simple)
+    // window.location.reload();
+    
+    // Opción 2: Actualizar componentes específicos (más elegante)
+    // Puedes disparar eventos personalizados desde tus componentes
+  });
+</script>
