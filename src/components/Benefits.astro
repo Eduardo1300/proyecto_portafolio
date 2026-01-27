@@ -1,93 +1,55 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
 interface Benefit {
   title: string;
   description: string;
   icon: string;
 }
 
-const benefits: Benefit[] = [
-  {
-    icon: '✅',
-    title: 'Entrega puntual',
-    description:
-      'Fechas claras desde el inicio. Si no cumplo, te devuelvo parte del dinero.',
-  },
-  {
-    icon: '📝',
-    title: 'Código tuyo',
-    description:
-      'Todo el código fuente es de tu propiedad. Sin dependencias ni ataduras.',
-  },
-  {
-    icon: '💬',
-    title: 'Comunicación clara',
-    description:
-      'Sin tecnicismos. Te explico todo en un lenguaje que entiendas.',
-  },
-  {
-    icon: '🤝',
-    title: 'Soporte incluido',
-    description:
-      '30 días de soporte gratuito después del lanzamiento.',
-  },
-  {
-    icon: '📊',
-    title: 'Resultados medibles',
-    description:
-      'Herramientas para que veas el impacto real en tu negocio.',
-  },
-  {
-    icon: '✨',
-    title: 'Garantía de satisfacción',
-    description:
-      'No pagas hasta que estés 100% satisfecho con el resultado.',
-  },
-];
+const lang = defaultLanguage;
+const texts = i18n[lang];
+
+const benefits: Benefit[] = texts.benefits.items;
 ---
 
-<section id="beneficios" class="py-16 md:py-24 lg:py-32 bg-slate-950">
+<section id="beneficios" class="py-16 md:py-24 lg:py-32 bg-slate-950" data-i18n="benefits">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
       {/* Left content */}
       <div>
-        <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block">
-          Beneficios
+        <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block benefits-label">
+          {texts.benefits.label}
         </span>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6">
-          ¿Por qué trabajar conmigo?
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 benefits-title">
+          {texts.benefits.title}
         </h2>
-        <p class="text-slate-400 text-base sm:text-lg mb-8">
-          Más que un desarrollador, soy un aliado que entiende que tu tiempo es valioso 
-          y que necesitas resultados, no excusas.
+        <p class="text-slate-400 text-base sm:text-lg mb-8 benefits-description">
+          {texts.benefits.description}
         </p>
         
         {/* Stats */}
         <div class="grid grid-cols-3 gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="text-center">
-            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-1">50+</div>
-            <div class="text-xs md:text-sm text-slate-400">Proyectos</div>
-          </div>
-          <div class="text-center border-x border-slate-700">
-            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-1">100%</div>
-            <div class="text-xs md:text-sm text-slate-400">Satisfacción</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-1">5+</div>
-            <div class="text-xs md:text-sm text-slate-400">Años exp.</div>
-          </div>
+          {texts.benefits.stats.map((stat, index) => (
+            <div class="text-center" key={index}>
+              <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-1 benefits-stat-value">{stat.value}</div>
+              <div class="text-xs md:text-sm text-slate-400 benefits-stat-label">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Right - Benefits grid */}
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
         {
-          benefits.map((benefit) => (
+          benefits.map((benefit, index) => (
             <div
-              class="p-4 md:p-6 rounded-xl border border-slate-800 bg-slate-900/50 hover:bg-slate-900 hover:border-cyan-500/30 transition-all"
+              class="p-4 md:p-6 rounded-xl border border-slate-800 bg-slate-900/50 hover:bg-slate-900 hover:border-cyan-500/30 transition-all benefits-item"
+              data-benefit={index}
             >
-              <div class="text-3xl md:text-4xl mb-3 md:mb-4">{benefit.icon}</div>
-              <h3 class="font-semibold text-white mb-2 text-sm md:text-base">{benefit.title}</h3>
-              <p class="text-xs md:text-sm text-slate-400 leading-relaxed">{benefit.description}</p>
+              <div class="text-3xl md:text-4xl mb-3 md:mb-4 benefits-icon">{benefit.icon}</div>
+              <h3 class="font-semibold text-white mb-2 text-sm md:text-base benefits-item-title">{benefit.title}</h3>
+              <p class="text-xs md:text-sm text-slate-400 leading-relaxed benefits-item-description">{benefit.description}</p>
             </div>
           ))
         }
@@ -95,3 +57,48 @@ const benefits: Benefit[] = [
     </div>
   </div>
 </section>
+
+<script>
+  import { i18n } from '../config/i18n';
+  
+  function updateBenefitsTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    // Update label
+    const labelEl = document.querySelector('.benefits-label');
+    if (labelEl) labelEl.textContent = texts.benefits.label;
+    
+    // Update title
+    const titleEl = document.querySelector('.benefits-title');
+    if (titleEl) titleEl.textContent = texts.benefits.title;
+    
+    // Update description
+    const descEl = document.querySelector('.benefits-description');
+    if (descEl) descEl.textContent = texts.benefits.description;
+    
+    // Update stats
+    const statValues = document.querySelectorAll('.benefits-stat-value');
+    const statLabels = document.querySelectorAll('.benefits-stat-label');
+    texts.benefits.stats.forEach((stat, index) => {
+      if (statValues[index]) statValues[index].textContent = stat.value;
+      if (statLabels[index]) statLabels[index].textContent = stat.label;
+    });
+    
+    // Update benefits items
+    const benefitItems = document.querySelectorAll('[data-benefit]');
+    benefitItems.forEach((item, index) => {
+      const titleEl = item.querySelector('.benefits-item-title');
+      const descEl = item.querySelector('.benefits-item-description');
+      
+      if (titleEl) titleEl.textContent = texts.benefits.items[index]?.title || '';
+      if (descEl) descEl.textContent = texts.benefits.items[index]?.description || '';
+    });
+  }
+  
+  // Update on language change
+  document.addEventListener('languageChanged', updateBenefitsTexts);
+  
+  // Initial update
+  updateBenefitsTexts();
+</script>

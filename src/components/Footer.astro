@@ -1,7 +1,11 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
+const lang = defaultLanguage;
+const texts = i18n[lang];
 ---
 
-<footer class="py-8 md:py-12 border-t border-slate-800 bg-slate-950">
+<footer class="py-8 md:py-12 border-t border-slate-800 bg-slate-950" data-i18n="footer">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       {/* Logo */}
@@ -11,28 +15,28 @@
 
       {/* Links */}
       <nav class="flex items-center gap-6 md:gap-8 flex-wrap justify-center">
-        <a href="#servicios" class="text-xs md:text-sm text-slate-400 hover:text-white transition-colors">
-          Servicios
+        <a href="#servicios" class="text-xs md:text-sm text-slate-400 hover:text-white transition-colors footer-servicios">
+          {texts.nav.servicios}
         </a>
-        <a href="#proceso" class="text-xs md:text-sm text-slate-400 hover:text-white transition-colors">
-          Proceso
+        <a href="#proceso" class="text-xs md:text-sm text-slate-400 hover:text-white transition-colors footer-proceso">
+          {texts.nav.proceso}
         </a>
-        <a href="#faq" class="text-xs md:text-sm text-slate-400 hover:text-white transition-colors">
-          FAQ
+        <a href="#faq" class="text-xs md:text-sm text-slate-400 hover:text-white transition-colors footer-faq">
+          {texts.nav.faq}
         </a>
       </nav>
 
       {/* Copyright */}
-      <p class="text-xs md:text-sm text-slate-400 text-center">
-        © 2026 DevStudio. Todos los derechos reservados.
+      <p class="text-xs md:text-sm text-slate-400 text-center footer-copyright">
+        {texts.footer.copyright}
       </p>
     </div>
 
     {/* Divider */}
     <div class="border-t border-slate-800 mt-8 pt-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-xs md:text-sm text-slate-500 text-center md:text-left">
-          © 2026 DevStudio. Todos los derechos reservados.
+        <p class="text-xs md:text-sm text-slate-500 text-center md:text-left footer-copyright-bottom">
+          {texts.footer.copyright}
         </p>
         <div class="flex gap-4 md:gap-6">
           <a href="#" class="text-xs md:text-sm text-slate-500 hover:text-cyan-500 transition">Twitter</a>
@@ -43,3 +47,33 @@
     </div>
   </div>
 </footer>
+
+<script>
+  import { i18n } from '../config/i18n';
+  
+  function updateFooterTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    // Update nav links
+    const serviciosEl = document.querySelector('.footer-servicios');
+    const procesoEl = document.querySelector('.footer-proceso');
+    const faqEl = document.querySelector('.footer-faq');
+    
+    if (serviciosEl) serviciosEl.textContent = texts.nav.servicios;
+    if (procesoEl) procesoEl.textContent = texts.nav.proceso;
+    if (faqEl) faqEl.textContent = texts.nav.faq;
+    
+    // Update copyright
+    const copyrightEls = document.querySelectorAll('.footer-copyright, .footer-copyright-bottom');
+    copyrightEls.forEach(el => {
+      el.textContent = texts.footer.copyright;
+    });
+  }
+  
+  // Update on language change
+  document.addEventListener('languageChanged', updateFooterTexts);
+  
+  // Initial update
+  updateFooterTexts();
+</script>

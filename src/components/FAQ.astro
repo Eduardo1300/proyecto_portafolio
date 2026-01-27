@@ -1,57 +1,30 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-const faqs: FAQItem[] = [
-  {
-    question: '¿Cuánto cuesta desarrollar un sitio web?',
-    answer:
-      'Los precios varían según la complejidad. Una landing page comienza desde $500 USD, sitios corporativos desde $1,200 USD. Hacemos un presupuesto claro después de entender tus necesidades. Sin sorpresas.',
-  },
-  {
-    question: '¿Cuánto tiempo toma desarrollar un sitio?',
-    answer:
-      'Tiempos claros desde el inicio: Landing pages en 1-2 semanas, sitios corporativos en 4-6 semanas, proyectos complejos dependen de las funcionalidades. Siempre mantengo fechas o devuelvo parte del dinero.',
-  },
-  {
-    question: '¿Necesito conocimientos técnicos para actualizar mi sitio?',
-    answer:
-      'No. Configuro todo para que sea fácil. Si necesitas ayuda, durante 30 días después del lanzamiento es gratis. Después, tenemos planes de soporte mensual muy accesibles.',
-  },
-  {
-    question: '¿Qué pasa si no me gusta el diseño?',
-    answer:
-      'No pagas hasta estar 100% satisfecho. Durante el desarrollo tienes acceso a todas las versiones. Cualquier cambio lo hacemos sin problema.',
-  },
-  {
-    question: '¿El sitio será visible en Google?',
-    answer:
-      'Sí. Todos mis proyectos incluyen SEO básico: estructura optimizada, meta etiquetas, velocidad de carga, etc. Esto ayuda a que Google encuentre tu sitio y lo posicione en los primeros resultados.',
-  },
-  {
-    question: '¿Qué incluye el soporte post-lanzamiento?',
-    answer:
-      '30 días gratis después del lanzamiento para: actualizaciones urgentes, correcciones, preguntas técnicas. Luego, planes mensuales desde $99 USD que incluyen mantenimiento, backups y soporte continuo.',
-  },
-];
+const lang = defaultLanguage;
+const texts = i18n[lang];
+
+const faqs: FAQItem[] = texts.faq.items;
 ---
 
-<section id="faq" class="py-16 md:py-24 lg:py-32 bg-slate-950">
+<section id="faq" class="py-16 md:py-24 lg:py-32 bg-slate-950" data-i18n="faq">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl mx-auto">
       {/* Section header */}
       <div class="text-center mb-12 md:mb-16">
-        <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block">
-          Preguntas frecuentes
+        <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block faq-label">
+          {texts.faq.label}
         </span>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6">
-          Resolvemos tus dudas
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 faq-title">
+          {texts.faq.title}
         </h2>
-        <p class="text-slate-400 text-base sm:text-lg px-2">
-          Las preguntas más comunes que recibo. Si no encuentras la tuya, 
-          escríbeme directamente.
+        <p class="text-slate-400 text-base sm:text-lg px-2 faq-description">
+          {texts.faq.description}
         </p>
       </div>
 
@@ -64,7 +37,7 @@ const faqs: FAQItem[] = [
               id={`faq-${index}`}
             >
               <summary 
-                class="text-left cursor-pointer py-4 md:py-6 font-medium text-white flex items-center justify-between text-sm md:text-base focus:outline-none hover:text-cyan-400 transition-colors select-none"
+                class="text-left cursor-pointer py-4 md:py-6 font-medium text-white flex items-center justify-between text-sm md:text-base focus:outline-none hover:text-cyan-400 transition-colors select-none faq-question"
                 aria-expanded="false"
                 aria-controls={`faq-answer-${index}`}
               >
@@ -78,7 +51,7 @@ const faqs: FAQItem[] = [
               </summary>
               <div 
                 id={`faq-answer-${index}`}
-                class="text-slate-400 pb-4 md:pb-6 leading-relaxed border-t border-slate-800 pt-4 md:pt-6 text-sm md:text-base animate-fade-in"
+                class="text-slate-400 pb-4 md:pb-6 leading-relaxed border-t border-slate-800 pt-4 md:pt-6 text-sm md:text-base animate-fade-in faq-answer"
                 role="region"
               >
                 {faq.answer}
@@ -104,3 +77,44 @@ const faqs: FAQItem[] = [
     }
   }))
 })} />
+
+<script>
+  import { i18n } from '../config/i18n';
+  
+  function updateFAQTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    // Update label
+    const labelEl = document.querySelector('.faq-label');
+    if (labelEl) labelEl.textContent = texts.faq.label;
+    
+    // Update title
+    const titleEl = document.querySelector('.faq-title');
+    if (titleEl) titleEl.textContent = texts.faq.title;
+    
+    // Update description
+    const descEl = document.querySelector('.faq-description');
+    if (descEl) descEl.textContent = texts.faq.description;
+    
+    // Update FAQ items
+    const questionElements = document.querySelectorAll('.faq-question');
+    const answerElements = document.querySelectorAll('.faq-answer');
+    
+    texts.faq.items.forEach((item, index) => {
+      if (questionElements[index]) {
+        const span = questionElements[index].querySelector('span');
+        if (span) span.textContent = item.question;
+      }
+      if (answerElements[index]) {
+        answerElements[index].textContent = item.answer;
+      }
+    });
+  }
+  
+  // Update on language change
+  document.addEventListener('languageChanged', updateFAQTexts);
+  
+  // Initial update
+  updateFAQTexts();
+</script>

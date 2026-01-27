@@ -1,17 +1,32 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
 interface Props {
-  title: string;
-  description: string;
-  ctaText: string;
+  title?: string;
+  description?: string;
+  ctaText?: string;
   ctaUrl?: string;
 }
 
-const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
+const { 
+  title,
+  description,
+  ctaText,
+  ctaUrl = '#contacto'
+} = Astro.props;
+
+// Usar textos del i18n (por defecto español, se actualiza en el cliente)
+const lang = defaultLanguage;
+const texts = i18n[lang];
+const heroTitle = title || texts.hero.title;
+const heroDesc = description || texts.hero.description;
+const heroCTA = ctaText || texts.hero.cta;
 ---
 
 <section
   class="relative min-h-screen flex items-center justify-center pt-20 md:pt-16 px-4 md:px-0 hero-gradient overflow-hidden"
   aria-label="Sección principal"
+  data-i18n="hero"
 >
   {/* Decorative elements - hidden from screen readers */}
   <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -24,30 +39,27 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
       {/* Badge */}
       <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-slate-700 bg-slate-900/50 mb-6 md:mb-8 animate-fade-up opacity-0" role="status" aria-live="polite">
         <span aria-hidden="true" class="text-cyan-400 text-sm sm:text-base">✨</span>
-        <span class="text-xs sm:text-sm text-slate-400">Desarrollo web profesional</span>
+        <span class="text-xs sm:text-sm text-slate-400 hero-badge">{texts.hero.badge}</span>
       </div>
 
       {/* Main headline */}
-      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-4 md:mb-6 animate-fade-up opacity-0 stagger-1 leading-tight">
-        Transformo tu idea en una{" "}
-        <span class="text-gradient block sm:inline">experiencia digital</span>{" "}
-        que conecta
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-4 md:mb-6 animate-fade-up opacity-0 stagger-1 leading-tight hero-title">
+        {heroTitle}
       </h1>
 
       {/* Subtitle */}
-      <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 md:mb-10 animate-fade-up opacity-0 stagger-2 px-2">
-        Desarrollo sitios web modernos, rápidos y optimizados para hacer crecer tu negocio. 
-        Sin complicaciones técnicas, con resultados reales.
+      <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 md:mb-10 animate-fade-up opacity-0 stagger-2 px-2 hero-description">
+        {heroDesc}
       </p>
 
       {/* CTAs */}
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-up opacity-0 stagger-3 px-2">
         <a 
           href={ctaUrl} 
-          class="cta-primary text-base sm:text-lg glow group px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center gap-2 w-full sm:w-auto justify-center focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded transition-all hover:scale-105 active:scale-95"
+          class="cta-primary text-base sm:text-lg glow group px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center gap-2 w-full sm:w-auto justify-center focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded transition-all hover:scale-105 active:scale-95 hero-cta"
           aria-label="Empezar proyecto ahora"
         >
-          Empezar proyecto
+          {heroCTA}
           <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">→</span>
         </a>
         <a 
@@ -55,13 +67,13 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
           class="cta-secondary text-base sm:text-lg px-6 sm:px-8 py-2 sm:py-3 inline-flex items-center w-full sm:w-auto justify-center focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded transition-all hover:scale-105 active:scale-95"
           aria-label="Ver nuestros servicios"
         >
-          Ver servicios
+          {texts.hero.secondary}
         </a>
       </div>
 
       {/* Trust indicators */}
       <div class="mt-12 md:mt-16 pt-12 md:pt-16 border-t border-slate-800/50 animate-fade-up opacity-0 stagger-4">
-        <p class="text-xs sm:text-sm text-slate-500 mb-6">Confianza de empresas como</p>
+        <p class="text-xs sm:text-sm text-slate-500 mb-6 hero-companies-label">{texts.hero.companies}</p>
         <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 opacity-50 px-2" role="list" aria-label="Empresas clientes">
           {["TechStart", "GrowthCo", "Innovate", "NextLevel", "BuildIt"].map((company) => (
             <span class="text-sm sm:text-base md:text-lg font-semibold text-slate-400 whitespace-nowrap" role="listitem">
@@ -73,3 +85,42 @@ const { title, description, ctaText, ctaUrl = '#contacto' } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  import { i18n } from '../config/i18n';
+  
+  function updateHeroTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    // Update badge
+    const badgeEl = document.querySelector('.hero-badge');
+    if (badgeEl) badgeEl.textContent = texts.hero.badge;
+    
+    // Update title
+    const titleEl = document.querySelector('.hero-title');
+    if (titleEl) titleEl.textContent = texts.hero.title;
+    
+    // Update description
+    const descEl = document.querySelector('.hero-description');
+    if (descEl) descEl.textContent = texts.hero.description;
+    
+    // Update CTA
+    const ctaEl = document.querySelector('.hero-cta');
+    if (ctaEl) ctaEl.innerHTML = `${texts.hero.cta}<span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">→</span>`;
+    
+    // Update secondary CTA - need to find it differently
+    const secondaryCtaEl = document.querySelectorAll('.cta-secondary')[0];
+    if (secondaryCtaEl) secondaryCtaEl.textContent = texts.hero.secondary;
+    
+    // Update companies label
+    const companiesLabelEl = document.querySelector('.hero-companies-label');
+    if (companiesLabelEl) companiesLabelEl.textContent = texts.hero.companies;
+  }
+  
+  // Update on language change
+  document.addEventListener('languageChanged', updateHeroTexts);
+  
+  // Initial update
+  updateHeroTexts();
+</script>

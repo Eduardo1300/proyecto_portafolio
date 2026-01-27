@@ -1,0 +1,54 @@
+---
+// Ejemplo de componente con soporte completo de i18n
+// Este es un ejemplo que puedes adaptar a otros componentes
+
+import { i18n, defaultLanguage } from '../config/i18n';
+
+const lang = defaultLanguage; // Por defecto español
+const texts = i18n[lang];
+---
+
+<div id="language-example" data-lang={lang}>
+  <!-- Aquí irían los textos que cambiarían con el idioma -->
+  <div class="hidden">
+    {Object.entries(i18n).map(([langCode, langTexts]) => (
+      <div id={`lang-${langCode}`} data-lang={langCode} style="display: none;">
+        <span class="hero-title">{langTexts.hero.title}</span>
+        <span class="hero-description">{langTexts.hero.description}</span>
+        <span class="hero-badge">{langTexts.hero.badge}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Escuchar cambios de idioma
+  window.addEventListener('languagechange', (event: any) => {
+    const newLang = event.detail.language;
+    updateLanguageContent(newLang);
+  });
+
+  function updateLanguageContent(lang: string) {
+    const langData = document.getElementById(`lang-${lang}`);
+    if (!langData) return;
+
+    // Actualizar título del hero
+    const titleElement = document.querySelector('.hero-title-display');
+    const descriptionElement = document.querySelector('.hero-description-display');
+    const badgeElement = document.querySelector('.hero-badge-display');
+
+    if (titleElement) {
+      titleElement.textContent = langData.querySelector('.hero-title')?.textContent || '';
+    }
+    if (descriptionElement) {
+      descriptionElement.textContent = langData.querySelector('.hero-description')?.textContent || '';
+    }
+    if (badgeElement) {
+      badgeElement.textContent = langData.querySelector('.hero-badge')?.textContent || '';
+    }
+  }
+
+  // Cargar idioma guardado al iniciar
+  const savedLang = localStorage.getItem('preferredLanguage') || 'es';
+  updateLanguageContent(savedLang);
+</script>
