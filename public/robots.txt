@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tusitio.com/sitemap.xml
+
+# Disallow crawling of admin pages
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Allow specific crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
