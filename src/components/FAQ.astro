@@ -17,13 +17,13 @@ const faqs: FAQItem[] = texts.faq.items;
     <div class="max-w-3xl mx-auto">
       {/* Section header */}
       <div class="text-center mb-12 md:mb-16">
-        <span class="text-cyan-500 text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block faq-label">
+        <span class="text-primary text-xs sm:text-sm font-medium tracking-wider uppercase mb-3 md:mb-4 block faq-label">
           {texts.faq.label}
         </span>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 faq-title">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-foreground faq-title">
           {texts.faq.title}
         </h2>
-        <p class="text-slate-400 text-base sm:text-lg px-2 faq-description">
+        <p class="text-muted-foreground text-base sm:text-lg px-2 faq-description">
           {texts.faq.description}
         </p>
       </div>
@@ -33,25 +33,25 @@ const faqs: FAQItem[] = texts.faq.items;
         {
           faqs.map((faq, index) => (
             <details 
-              class="group border border-slate-800 rounded-xl px-4 md:px-6 bg-slate-900/50 hover:border-cyan-500/50 transition-colors focus-within:ring-2 focus-within:ring-cyan-500"
+              class="group border border-border rounded-xl px-4 md:px-6 bg-secondary/50 hover:border-primary/50 transition-colors focus-within:ring-2 focus-within:ring-primary"
               id={`faq-${index}`}
             >
               <summary 
-                class="text-left cursor-pointer py-4 md:py-6 font-medium text-white flex items-center justify-between text-sm md:text-base focus:outline-none hover:text-cyan-400 transition-colors select-none faq-question"
+                class="text-left cursor-pointer py-4 md:py-6 font-medium text-foreground flex items-center justify-between text-sm md:text-base focus:outline-none hover:text-primary transition-colors select-none faq-question"
                 aria-expanded="false"
                 aria-controls={`faq-answer-${index}`}
               >
                 <span class="pr-3 md:pr-4 text-left">{faq.question}</span>
                 <span 
                   aria-hidden="true"
-                  class="text-slate-400 group-open:text-cyan-400 group-open:rotate-180 transition-all flex-shrink-0"
+                  class="text-muted-foreground group-open:text-primary group-open:rotate-180 transition-all flex-shrink-0"
                 >
                   ▼
                 </span>
               </summary>
               <div 
                 id={`faq-answer-${index}`}
-                class="text-slate-400 pb-4 md:pb-6 leading-relaxed border-t border-slate-800 pt-4 md:pt-6 text-sm md:text-base animate-fade-in faq-answer"
+                class="text-muted-foreground pb-4 md:pb-6 leading-relaxed border-t border-border pt-4 md:pt-6 text-sm md:text-base animate-fade-in faq-answer"
                 role="region"
               >
                 {faq.answer}
