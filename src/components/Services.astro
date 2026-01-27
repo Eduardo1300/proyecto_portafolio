@@ -1,5 +1,6 @@
 ---
 import { i18n, defaultLanguage } from '../config/i18n';
+import LucideIcon from './icons/LucideIcon.astro';
 
 interface Service {
   icon: string;
@@ -12,32 +13,32 @@ const texts = i18n[lang];
 
 const services: Service[] = [
   {
-    icon: '🌐',
+    icon: 'globe',
     title: texts.services.items[0].title,
     description: texts.services.items[0].description,
   },
   {
-    icon: '🛍️',
+    icon: 'shoppingCart',
     title: texts.services.items[1].title,
     description: texts.services.items[1].description,
   },
   {
-    icon: '📱',
+    icon: 'smartphone',
     title: texts.services.items[2].title,
     description: texts.services.items[2].description,
   },
   {
-    icon: '⚡',
+    icon: 'zap',
     title: texts.services.items[3].title,
     description: texts.services.items[3].description,
   },
   {
-    icon: '🔍',
+    icon: 'search',
     title: texts.services.items[4].title,
     description: texts.services.items[4].description,
   },
   {
-    icon: '📊',
+    icon: 'barChart3',
     title: texts.services.items[5].title,
     description: texts.services.items[5].description,
   },
@@ -72,8 +73,8 @@ const services: Service[] = [
             role="article"
             aria-label={`Servicio: ${service.title}`}
           >
-            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 group-hover:scale-125 transition-transform duration-300 text-2xl will-change-transform" aria-hidden="true">
-              {service.icon}
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 group-hover:scale-125 transition-transform duration-300 will-change-transform text-cyan-500" aria-hidden="true">
+              <LucideIcon name={service.icon} size={24} strokeWidth={2} />
             </div>
             <h3 class="text-lg md:text-xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
               {service.title}

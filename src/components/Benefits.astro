@@ -1,5 +1,6 @@
 ---
 import { i18n, defaultLanguage } from '../config/i18n';
+import LucideIcon from './icons/LucideIcon.astro';
 
 interface Benefit {
   title: string;
@@ -10,7 +11,20 @@ interface Benefit {
 const lang = defaultLanguage;
 const texts = i18n[lang];
 
-const benefits: Benefit[] = texts.benefits.items;
+// Map emoji icons to Lucide icons
+const iconMap: Record<string, string> = {
+  '✅': 'check',
+  '📝': 'clipboard',
+  '💬': 'heart',
+  '🤝': 'headphones',
+  '📊': 'trendingUp',
+  '✨': 'shield',
+};
+
+const benefits: Benefit[] = texts.benefits.items.map(item => ({
+  ...item,
+  icon: iconMap[item.icon] || item.icon,
+}));
 ---
 
 <section id="beneficios" class="py-16 md:py-24 lg:py-32 bg-slate-950" data-i18n="benefits">
@@ -47,7 +61,9 @@ const benefits: Benefit[] = texts.benefits.items;
               class="p-4 md:p-6 rounded-xl border border-border bg-secondary/50 hover:bg-secondary hover:border-primary/30 transition-all benefits-item"
               data-benefit={index}
             >
-              <div class="text-3xl md:text-4xl mb-3 md:mb-4 benefits-icon">{benefit.icon}</div>
+              <div class="w-10 h-10 text-primary mb-3 md:mb-4 benefits-icon">
+                <LucideIcon name={benefit.icon} size={28} strokeWidth={2} />
+              </div>
               <h3 class="font-semibold text-foreground mb-2 text-sm md:text-base benefits-item-title">{benefit.title}</h3>
               <p class="text-xs md:text-sm text-muted-foreground leading-relaxed benefits-item-description">{benefit.description}</p>
             </div>
