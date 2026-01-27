@@ -38,34 +38,41 @@ const faqs: FAQItem[] = [
 ];
 ---
 
-<section class="py-24 bg-slate-950">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label">PREGUNTAS FRECUENTES</span>
-      <h2 class="section-heading">
-        Resolvemos tus dudas
-      </h2>
-      <p class="section-subheading">
-        Las preguntas más comunes que recibo. Si no encuentras la tuya, escríbeme directamente.
-      </p>
-    </div>
+<section id="faq" class="py-24 md:py-32 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      {/* Section header */}
+      <div class="text-center mb-16">
+        <span class="text-cyan-500 text-sm font-medium tracking-wider uppercase mb-4 block">
+          Preguntas frecuentes
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+          Resolvemos tus dudas
+        </h2>
+        <p class="text-slate-400 text-lg">
+          Las preguntas más comunes que recibo. Si no encuentras la tuya, 
+          escríbeme directamente.
+        </p>
+      </div>
 
-    <div class="space-y-4">
-      {
-        faqs.map((faq, index) => (
-          <details class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group hover:border-cyan-500/50 transition-colors">
-            <summary class="p-6 font-bold text-white cursor-pointer flex items-center justify-between">
-              <span>{faq.question}</span>
-              <span class="text-cyan-500 group-open:rotate-180 transition-transform">
-                ▼
-              </span>
-            </summary>
-            <div class="px-6 pb-6 pt-0 text-slate-400 border-t border-slate-800">
-              {faq.answer}
-            </div>
-          </details>
-        ))
-      }
+      {/* Accordion */}
+      <div class="space-y-4">
+        {
+          faqs.map((faq, index) => (
+            <details class="group border border-slate-800 rounded-xl px-6 bg-slate-900/50 hover:border-cyan-500/50 transition-colors">
+              <summary class="text-left cursor-pointer py-6 font-medium text-white flex items-center justify-between">
+                <span class="pr-4">{faq.question}</span>
+                <span class="text-slate-400 group-open:text-cyan-400 group-open:rotate-180 transition-all flex-shrink-0">
+                  ▼
+                </span>
+              </summary>
+              <div class="text-slate-400 pb-6 leading-relaxed border-t border-slate-800 pt-6">
+                {faq.answer}
+              </div>
+            </details>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

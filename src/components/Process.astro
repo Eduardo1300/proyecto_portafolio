@@ -1,31 +1,31 @@
 ---
 interface ProcessStep {
-  number: number;
+  number: string;
   title: string;
   description: string;
 }
 
 const steps: ProcessStep[] = [
   {
-    number: 1,
+    number: '01',
     title: 'Conversación inicial',
     description:
       'Entendemos tu negocio, objetivos y lo que necesitas. Sin compromiso, solo una charla para conocernos.',
   },
   {
-    number: 2,
+    number: '02',
     title: 'Propuesta y diseño',
     description:
       'Creamos una propuesta clara con bocetos del diseño. Tú apruebas cada paso antes de continuar.',
   },
   {
-    number: 3,
+    number: '03',
     title: 'Desarrollo',
     description:
       'Construimos tu sitio con las mejores tecnologías. Tienes acceso a una vista previa en todo momento.',
   },
   {
-    number: 4,
+    number: '04',
     title: 'Lanzamiento',
     description:
       'Publicamos tu sitio y te enseñamos a usarlo. Soporte incluido para que nunca te quedes solo.',
@@ -33,39 +33,50 @@ const steps: ProcessStep[] = [
 ];
 ---
 
-<section class="py-24 bg-slate-950">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <span class="section-label">PROCESO</span>
-      <h2 class="section-heading">
+<section id="proceso" class="py-24 md:py-32 bg-slate-900/50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center mb-16">
+      <span class="text-cyan-500 text-sm font-medium tracking-wider uppercase mb-4 block">
+        Proceso
+      </span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
         Simple, transparente, sin sorpresas
       </h2>
-      <p class="section-subheading">
+      <p class="text-slate-400 text-lg">
         Un proceso claro donde siempre sabrás en qué punto estamos y qué viene después.
       </p>
     </div>
 
-    <div class="space-y-6">
-      {
-        steps.map((step) => (
-          <div class="border border-slate-800 rounded-xl p-8 hover:border-cyan-500/50 transition-all duration-300 bg-slate-900/50">
-            <div class="flex gap-6">
-              <div class="text-6xl font-bold text-cyan-500 min-w-24">{step.number.toString().padStart(2, '0')}</div>
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-6">
+        {
+          steps.map((step, index) => (
+            <div class="relative flex gap-6 md:gap-10 p-6 md:p-8 rounded-2xl border border-slate-800 bg-slate-900/50 hover:border-cyan-500/30 transition-all group">
+              {/* Number */}
+              <div class="flex-shrink-0">
+                <span class="text-5xl md:text-6xl font-bold text-gradient opacity-50 group-hover:opacity-100 transition-opacity">
+                  {step.number}
+                </span>
+              </div>
+
+              {/* Content */}
               <div class="flex-1">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-2 h-2 bg-cyan-500 rounded-full"></div>
-                  <h3 class="text-xl font-bold text-white">
-                    {step.title}
-                  </h3>
-                </div>
+                <h3 class="text-xl font-semibold text-white mb-3">
+                  {step.title}
+                </h3>
                 <p class="text-slate-400 leading-relaxed">
                   {step.description}
                 </p>
               </div>
+
+              {/* Connector line */}
+              {index < steps.length - 1 && (
+                <div class="absolute left-[3.25rem] md:left-[4.25rem] top-full h-6 w-px bg-slate-700" />
+              )}
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
