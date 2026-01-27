@@ -56,17 +56,31 @@ const faqs: FAQItem[] = [
       </div>
 
       {/* Accordion */}
-      <div class="space-y-3 md:space-y-4">
+      <div class="space-y-3 md:space-y-4" role="region" aria-label="Preguntas frecuentes">
         {
           faqs.map((faq, index) => (
-            <details class="group border border-slate-800 rounded-xl px-4 md:px-6 bg-slate-900/50 hover:border-cyan-500/50 transition-colors">
-              <summary class="text-left cursor-pointer py-4 md:py-6 font-medium text-white flex items-center justify-between text-sm md:text-base">
+            <details 
+              class="group border border-slate-800 rounded-xl px-4 md:px-6 bg-slate-900/50 hover:border-cyan-500/50 transition-colors focus-within:ring-2 focus-within:ring-cyan-500"
+              id={`faq-${index}`}
+            >
+              <summary 
+                class="text-left cursor-pointer py-4 md:py-6 font-medium text-white flex items-center justify-between text-sm md:text-base focus:outline-none hover:text-cyan-400 transition-colors select-none"
+                aria-expanded="false"
+                aria-controls={`faq-answer-${index}`}
+              >
                 <span class="pr-3 md:pr-4 text-left">{faq.question}</span>
-                <span class="text-slate-400 group-open:text-cyan-400 group-open:rotate-180 transition-all flex-shrink-0">
+                <span 
+                  aria-hidden="true"
+                  class="text-slate-400 group-open:text-cyan-400 group-open:rotate-180 transition-all flex-shrink-0"
+                >
                   ▼
                 </span>
               </summary>
-              <div class="text-slate-400 pb-4 md:pb-6 leading-relaxed border-t border-slate-800 pt-4 md:pt-6 text-sm md:text-base">
+              <div 
+                id={`faq-answer-${index}`}
+                class="text-slate-400 pb-4 md:pb-6 leading-relaxed border-t border-slate-800 pt-4 md:pt-6 text-sm md:text-base animate-fade-in"
+                role="region"
+              >
                 {faq.answer}
               </div>
             </details>
@@ -76,3 +90,17 @@ const faqs: FAQItem[] = [
     </div>
   </div>
 </section>
+
+{/* JSON-LD Schema para FAQ */}
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+})} />

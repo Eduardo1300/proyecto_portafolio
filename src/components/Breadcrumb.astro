@@ -1,0 +1,56 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Migas de pan" class="py-4">
+  <ol class="flex flex-wrap items-center gap-2 text-sm">
+    <li>
+      <a href="/" class="text-cyan-400 hover:text-cyan-300 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+        Inicio
+      </a>
+    </li>
+    {items.map((item, index) => (
+      <>
+        <li aria-hidden="true" class="text-slate-500">/</li>
+        <li>
+          {index === items.length - 1 ? (
+            <span class="text-slate-400" aria-current="page">{item.label}</span>
+          ) : (
+            <a href={item.url} class="text-cyan-400 hover:text-cyan-300 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded px-1">
+              {item.label}
+            </a>
+          )}
+        </li>
+      </>
+    ))}
+  </ol>
+</nav>
+
+{/* JSON-LD Schema para breadcrumbs */}
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": Astro.site?.href
+    },
+    ...items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": item.label,
+      "item": new URL(item.url, Astro.site).href
+    }))
+  ]
+})} />
