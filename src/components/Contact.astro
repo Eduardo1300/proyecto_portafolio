@@ -1,5 +1,6 @@
 ---
 import { i18n, defaultLanguage } from '../config/i18n';
+import ContactForm from './ContactForm.astro';
 
 interface Contact {
   title: string;
@@ -64,6 +65,11 @@ const contact: Contact = {
       <p class="text-xs md:text-sm text-slate-500 mt-8 px-2 contact-trust">
         {texts.contact.trust}
       </p>
+    </div>
+
+    {/* Contact Form */}
+    <div class="mt-16 md:mt-20 lg:mt-24">
+      <ContactForm />
     </div>
   </div>
 
