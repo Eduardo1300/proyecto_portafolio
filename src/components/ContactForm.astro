@@ -1,20 +1,12 @@
 ---
 ---
 <form 
+  id="contact-form"
   name="contact"
   method="POST" 
-  action="/success"
-  data-netlify="true"
-  data-netlify-honeypot="bot-field"
+  action="https://formspree.io/f/mjgwedza"
   class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
 >
-  <input type="hidden" name="form-name" value="contact" />
-  <p class="hidden">
-    <label>
-      Don’t fill this out if you’re human: <input name="bot-field" />
-    </label>
-  </p>
-  
   <div class="sm:col-span-2">
     <label for="name" class="block text-sm font-medium text-gray-300">Nombre</label>
     <div class="mt-1">
@@ -67,4 +59,39 @@
       Enviar mensaje
     </button>
   </div>
+  <div id="form-message" class="sm:col-span-2 text-center mt-4 text-white"></div>
 </form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const formMessage = document.getElementById('form-message') as HTMLDivElement;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      formMessage.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+      formMessage.classList.remove('text-red-500');
+      formMessage.classList.add('text-green-500');
+      form.reset();
+    } else {
+      const data = await response.json();
+      if (data.errors) {
+        formMessage.textContent = data.errors.map((error: any) => error.message).join(', ');
+      } else {
+        formMessage.textContent = 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.';
+      }
+      formMessage.classList.remove('text-green-500');
+      formMessage.classList.add('text-red-500');
+    }
+  });
+</script>
