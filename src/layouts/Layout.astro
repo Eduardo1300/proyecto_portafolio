@@ -27,7 +27,7 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="author" content="dev studio" />
+    <meta name="author" content="Christopher Valdivia" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="Spanish" />
     <meta name="revisit-after" content="7 days" />
@@ -47,7 +47,7 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site).href} />
     <meta property="og:image:alt" content={title} />
-    <meta property="og:site_name" content="dev studio" />
+    <meta property="og:site_name" content="Christopher Valdivia" />
     
     {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
@@ -59,14 +59,14 @@ const {
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "dev studio",
+      "name": "Christopher Valdivia",
       "url": Astro.site?.href,
       "logo": new URL("/logo.png", Astro.site)?.href,
       "description": description,
       "sameAs": [
-        "https://www.linkedin.com/company/devstudio",
-        "https://www.twitter.com/devstudio",
-        "https://www.instagram.com/devstudio"
+"https://www.linkedin.com/in/christophervaldivia",
+        "https://www.twitter.com/christopher_dev",
+        "https://www.instagram.com/christophervaldivia"
       ]
     })} />
     

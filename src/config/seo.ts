@@ -4,10 +4,10 @@
  */
 
 export const siteConfig = {
-  title: 'Dev Studio - Desarrollo Web Profesional',
+  title: 'Christopher Valdivia - Desarrollo Web Profesional',
   description: 'Desarrollo de sitios web modernos, rápidos y optimizados para hacer crecer tu negocio. Sin complicaciones técnicas, con resultados reales.',
   keywords: 'desarrollo web, diseño web, sitios web profesionales, e-commerce, SEO, landing pages, optimización',
-  author: 'Dev Studio',
+  author: 'Christopher Valdivia',
   site: 'https://tusitio.com',
   logo: '/logo.png',
   image: '/og-image.jpg',
@@ -16,9 +16,9 @@ export const siteConfig = {
 };
 
 export const socialLinks = {
-  twitter: 'https://twitter.com/devstudio',
-  linkedin: 'https://linkedin.com/company/devstudio',
-  github: 'https://github.com/devstudio',
+twitter: 'https://twitter.com/christopher_dev',
+  linkedin: 'https://linkedin.com/in/christophervaldivia',
+  github: 'https://github.com/christophervaldivia',
 };
 
 // Esquema JSON-LD para Organization
@@ -33,7 +33,7 @@ export const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Customer Service',
-    email: 'hola@devstudio.com',
+    email: 'contacto@christophervaldivia.tech',
   },
 };
 

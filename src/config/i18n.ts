@@ -187,7 +187,7 @@ export const i18n = {
     },
     // Footer
     footer: {
-      copyright: '© 2026 DevStudio. Todos los derechos reservados.',
+      copyright: '© 2026 Christopher Valdivia. Todos los derechos reservados.',
       language: 'Idioma',
     },
   },
@@ -370,7 +370,7 @@ export const i18n = {
     },
     // Footer
     footer: {
-      copyright: '© 2026 DevStudio. All rights reserved.',
+      copyright: '© 2026 Christopher Valdivia. All rights reserved.',
       language: 'Language',
     },
   },
