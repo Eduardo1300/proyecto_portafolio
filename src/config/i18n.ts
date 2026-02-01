@@ -93,9 +93,9 @@ export const i18n = {
       title: 'Más que un desarrollador, soy un aliado',
       description: 'Entiendo que tu tiempo es valioso y que necesitas resultados, no excusas.',
       stats: [
-        { value: '50+', label: 'Proyectos' },
-        { value: '100%', label: 'Satisfacción' },
-        { value: '5+', label: 'Años exp.' },
+        { value: 'Proyectos', label: 'Personales' },
+        { value: '100%', label: 'Compromiso' },
+        { value: 'Ilimitadas', label: 'Revisiones' },
       ],
       items: [
         {
@@ -276,9 +276,9 @@ export const i18n = {
       title: 'More than a developer, I\'m an ally',
       description: 'I understand that your time is valuable and that you need results, not excuses.',
       stats: [
-        { value: '50+', label: 'Projects' },
-        { value: '100%', label: 'Satisfaction' },
-        { value: '5+', label: 'Years exp.' },
+        { value: 'Personal', label: 'Projects' },
+        { value: '100%', label: 'Commitment' },
+        { value: 'Unlimited', label: 'Revisions' },
       ],
       items: [
         {
