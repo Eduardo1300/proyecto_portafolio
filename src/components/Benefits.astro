@@ -46,8 +46,8 @@ const benefits: Benefit[] = texts.benefits.items.map(item => ({
         <div class="grid grid-cols-3 gap-3 md:gap-6 p-4 md:p-6 rounded-2xl bg-secondary/50 border border-border">
           {texts.benefits.stats.map((stat, index) => (
             <div class="text-center">
-<div class="text-xl md:text-2xl font-bold text-primary mb-1 benefits-stat-value">{stat.value}</div>
-              <div class="text-[10px] md:text-xs text-muted-foreground benefits-stat-label">{stat.label}</div>
+<div class="text-lg md:text-xl font-bold text-primary mb-1 benefits-stat-value">{stat.value}</div>
+              <div class="text-xs text-muted-foreground benefits-stat-label">{stat.label}</div>
             </div>
           ))}
         </div>
