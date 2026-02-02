@@ -16,9 +16,8 @@ export const siteConfig = {
 };
 
 export const socialLinks = {
-twitter: 'https://twitter.com/christopher_dev',
-  linkedin: 'https://linkedin.com/in/christophervaldivia',
-  github: 'https://github.com/christophervaldivia',
+linkedin: 'https://www.linkedin.com/in/christopher-eduardo-valdivia-baca-899051318/',
+  github: 'https://github.com/Eduardo1300',
 };
 
 // Esquema JSON-LD para Organization
@@ -29,7 +28,7 @@ export const organizationSchema = {
   url: siteConfig.site,
   logo: `${siteConfig.site}${siteConfig.logo}`,
   description: siteConfig.description,
-  sameAs: [socialLinks.twitter, socialLinks.linkedin, socialLinks.github],
+  sameAs: [socialLinks.linkedin, socialLinks.github],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Customer Service',
