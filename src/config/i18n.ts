@@ -153,7 +153,7 @@ export const i18n = {
       items: [
         {
           question: '¿Cuánto cuesta desarrollar un sitio web?',
-          answer: 'Los precios varían según la complejidad. Una landing page comienza desde $500 USD, sitios corporativos desde $1,200 USD. Hacemos un presupuesto claro después de entender tus necesidades. Sin sorpresas.',
+          answer: 'Los precios varían según la complejidad. Una landing page comienza desde $300 USD, sitios corporativos desde $900 USD. Hacemos un presupuesto claro después de entender tus necesidades. Sin sorpresas.',
         },
         {
           question: '¿Cuánto tiempo toma desarrollar un sitio?',
@@ -173,7 +173,7 @@ export const i18n = {
         },
         {
           question: '¿Qué incluye el soporte post-lanzamiento?',
-          answer: '30 días gratis después del lanzamiento para: actualizaciones urgentes, correcciones, preguntas técnicas. Luego, planes mensuales desde $99 USD que incluyen mantenimiento, backups y soporte continuo.',
+          answer: '30 días gratis después del lanzamiento para: actualizaciones urgentes, correcciones, preguntas técnicas. Luego, planes mensuales desde $50 USD que incluyen mantenimiento, backups y soporte continuo.',
         },
       ],
     },
@@ -336,7 +336,7 @@ export const i18n = {
       items: [
         {
           question: 'How much does it cost to develop a website?',
-          answer: 'Prices vary depending on complexity. A landing page starts at $500 USD, corporate sites from $1,200 USD. We provide a clear budget after understanding your needs. No surprises.',
+          answer: 'Prices vary depending on complexity. A landing page starts at $300 USD, corporate sites from $900 USD. We provide a clear budget after understanding your needs. No surprises.',
         },
         {
           question: 'How long does it take to develop a website?',
@@ -356,7 +356,7 @@ export const i18n = {
         },
         {
           question: 'What does post-launch support include?',
-          answer: '30 days free after launch for: urgent updates, corrections, technical questions. Later, monthly plans from $99 USD including maintenance, backups and continuous support.',
+          answer: '30 days free after launch for: urgent updates, corrections, technical questions. Later, monthly plans from $50 USD including maintenance, backups and continuous support.',
         },
       ],
     },
