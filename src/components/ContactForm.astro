@@ -1,5 +1,10 @@
 ---
+import { i18n, defaultLanguage } from '../config/i18n';
+
+const lang = defaultLanguage;
+const texts = i18n[lang];
 ---
+
 <form 
   id="contact-form"
   name="contact"
@@ -8,7 +13,7 @@
   class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
 >
   <div class="sm:col-span-2">
-    <label for="name" class="block text-sm font-medium text-gray-300">Nombre</label>
+    <label for="name" class="block text-sm font-medium text-gray-300 form-label-name">{texts.contact?.form?.name || 'Nombre'}</label>
     <div class="mt-1">
       <input 
         type="text" 
@@ -16,14 +21,14 @@
         id="name" 
         autocomplete="name" 
         class="py-3 px-4 block w-full shadow-sm bg-gray-800 border-gray-700 rounded-md focus:ring-primary focus:border-primary text-gray-100" 
-        placeholder="Tu nombre"
+        placeholder={texts.contact?.form?.placeholderName || 'Tu nombre'}
         required
       />
     </div>
   </div>
   
   <div class="sm:col-span-2">
-    <label for="email" class="block text-sm font-medium text-gray-300">Correo electrónico</label>
+    <label for="email" class="block text-sm font-medium text-gray-300 form-label-email">{texts.contact?.form?.email || 'Correo electrónico'}</label>
     <div class="mt-1">
       <input 
         id="email" 
@@ -31,40 +36,53 @@
         type="email" 
         autocomplete="email" 
         class="py-3 px-4 block w-full shadow-sm bg-gray-800 border-gray-700 rounded-md focus:ring-primary focus:border-primary text-gray-100"
-        placeholder="Tu correo electrónico"
+        placeholder={texts.contact?.form?.placeholderEmail || 'Tu correo electrónico'}
         required 
       />
     </div>
   </div>
   
   <div class="sm:col-span-2">
-    <label for="message" class="block text-sm font-medium text-gray-300">Mensaje</label>
+    <label for="message" class="block text-sm font-medium text-gray-300 form-label-message">{texts.contact?.form?.message || 'Mensaje'}</label>
     <div class="mt-1">
       <textarea 
         id="message" 
         name="message" 
         rows={4} 
         class="py-3 px-4 block w-full shadow-sm bg-gray-800 border-gray-700 rounded-md focus:ring-primary focus:border-primary text-gray-100"
-        placeholder="¿En qué te puedo ayudar?"
+        placeholder={texts.contact?.form?.placeholderMessage || '¿En qué te puedo ayudar?'}
         required
       ></textarea>
     </div>
   </div>
   
   <div class="sm:col-span-2">
-<button 
+    <button 
       type="submit" 
       class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cyan-500 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-colors"
     >
-      Enviar mensaje
+      {texts.contact?.form?.submit || 'Enviar mensaje'}
     </button>
   </div>
   <div id="form-message" class="sm:col-span-2 text-center mt-4 text-white"></div>
 </form>
 
 <script>
+  import { i18n } from '../config/i18n';
+  
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const formMessage = document.getElementById('form-message') as HTMLDivElement;
+
+  const messages = {
+    es: {
+      success: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.',
+      error: 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.'
+    },
+    en: {
+      success: 'Message sent successfully! We will contact you soon.',
+      error: 'There was an error sending your message. Please try again.'
+    }
+  };
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -78,8 +96,11 @@
       }
     });
 
+    const lang = document.documentElement.dataset.lang || 'es';
+    const msg = messages[lang as keyof typeof messages] || messages.es;
+
     if (response.ok) {
-      formMessage.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+      formMessage.textContent = msg.success;
       formMessage.classList.remove('text-red-500');
       formMessage.classList.add('text-green-500');
       form.reset();
@@ -88,10 +109,48 @@
       if (data.errors) {
         formMessage.textContent = data.errors.map((error: any) => error.message).join(', ');
       } else {
-        formMessage.textContent = 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.';
+        formMessage.textContent = msg.error;
       }
       formMessage.classList.remove('text-green-500');
       formMessage.classList.add('text-red-500');
     }
   });
+
+  function updateFormTexts() {
+    const lang = (document.documentElement.dataset.lang as keyof typeof i18n) || 'es';
+    const texts = i18n[lang];
+    
+    const labels = {
+      name: texts.contact?.form?.name || 'Name',
+      placeholderName: texts.contact?.form?.placeholderName || 'Your name',
+      email: texts.contact?.form?.email || 'Email',
+      placeholderEmail: texts.contact?.form?.placeholderEmail || 'Your email',
+      message: texts.contact?.form?.message || 'Message',
+      placeholderMessage: texts.contact?.form?.placeholderMessage || 'How can I help you?',
+      submit: texts.contact?.form?.submit || 'Send message'
+    };
+
+    const nameLabel = document.querySelector('.form-label-name');
+    if (nameLabel) nameLabel.textContent = labels.name;
+    
+    const placeholderName = document.querySelector('input[name="name"]') as HTMLInputElement;
+    if (placeholderName) placeholderName.placeholder = labels.placeholderName;
+
+    const emailLabel = document.querySelector('.form-label-email');
+    if (emailLabel) emailLabel.textContent = labels.email;
+    
+    const placeholderEmail = document.querySelector('input[name="email"]') as HTMLInputElement;
+    if (placeholderEmail) placeholderEmail.placeholder = labels.placeholderEmail;
+
+    const messageLabel = document.querySelector('.form-label-message');
+    if (messageLabel) messageLabel.textContent = labels.message;
+    
+    const placeholderMessage = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+    if (placeholderMessage) placeholderMessage.placeholder = labels.placeholderMessage;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.textContent = labels.submit;
+  }
+
+  document.addEventListener('languageChanged', updateFormTexts);
 </script>

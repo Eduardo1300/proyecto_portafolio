@@ -1,5 +1,6 @@
 ---
 import { i18n, defaultLanguage } from '../config/i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 
 const lang = defaultLanguage;
 const texts = i18n[lang];
@@ -28,13 +29,16 @@ const texts = i18n[lang];
       </a>
     </nav>
 
-    {/* Contact Button */}
-    <a
-      href="#contacto"
-      class="glow px-6 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary nav-contacto"
-    >
-      {texts.nav.contacto}
-    </a>
+{/* Contact Button & Language Switcher */}
+    <div class="flex items-center gap-4">
+      <LanguageSwitcher currentLang={lang} />
+      <a
+        href="#contacto"
+        class="glow px-6 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary nav-contacto"
+      >
+        {texts.nav.contacto}
+      </a>
+    </div>
 
     {/* Mobile menu button */}
     <button 
@@ -79,12 +83,17 @@ const texts = i18n[lang];
       >
         {texts.nav.faq}
       </a>
-      <a
+<a
         href="#contacto"
         class="block glow w-full mx-4 px-4 py-2.5 text-center text-sm font-medium bg-primary text-primary-foreground rounded-lg transition-all hover:shadow-lg nav-contacto-mobile"
       >
         {texts.nav.contacto}
       </a>
+      
+      {/* Language Switcher Mobile */}
+      <div class="flex justify-center pt-4 border-t border-border/50 mt-4">
+        <LanguageSwitcher currentLang={lang} />
+      </div>
     </div>
   </nav>
 </header>

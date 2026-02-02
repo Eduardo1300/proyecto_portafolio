@@ -8,22 +8,54 @@ interface Props {
 const { currentLang = defaultLanguage } = Astro.props;
 ---
 
-<div class="language-switcher flex items-center gap-2" aria-label="Selector de idioma">
+<div class="language-switcher flex items-center gap-2" aria-label="Language selector">
   {Object.entries(languages).map(([lang, label]) => (
-    <a
-      href={`/${lang}/`}
-      class={`px-3 py-1.5 rounded text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 ${
+    <button
+      class={`lang-btn px-3 py-1.5 rounded text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 cursor-pointer ${
         lang === currentLang
           ? 'bg-cyan-500 text-slate-950'
           : 'bg-slate-900/50 text-slate-400 hover:text-white border border-slate-800'
       }`}
-      aria-current={lang === currentLang ? 'page' : 'false'}
-      aria-label={`Cambiar a ${label}`}
+      data-lang={lang}
+      aria-label={`Switch to ${label}`}
+      aria-pressed={lang === currentLang ? 'true' : 'false'}
     >
       {lang.toUpperCase()}
-    </a>
+    </button>
   ))}
 </div>
+
+<script>
+  function initLanguageSwitcher() {
+    const langButtons = document.querySelectorAll('.lang-btn');
+    
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        if (lang) {
+          localStorage.setItem('preferredLanguage', lang);
+          document.documentElement.lang = lang;
+          document.documentElement.setAttribute('data-lang', lang);
+          
+          langButtons.forEach(b => {
+            b.classList.remove('bg-cyan-500', 'text-slate-950');
+            b.classList.add('bg-slate-900/50', 'text-slate-400', 'border', 'border-slate-800');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          
+          btn.classList.remove('bg-slate-900/50', 'text-slate-400', 'border', 'border-slate-800');
+          btn.classList.add('bg-cyan-500', 'text-slate-950');
+          btn.setAttribute('aria-pressed', 'true');
+          
+          document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+        }
+      });
+    });
+  }
+
+  initLanguageSwitcher();
+  document.addEventListener('astro:page-load', initLanguageSwitcher);
+</script>
 
 <style>
   .language-switcher {

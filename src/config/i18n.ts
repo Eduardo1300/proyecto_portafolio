@@ -18,14 +18,14 @@ export const i18n = {
       faq: 'FAQ',
       contacto: 'Contactar',
     },
-    // Hero
+// Hero
     hero: {
-      badge: 'Desarrollo web profesional',
-      title: 'Transformo tu idea en una experiencia digital que conecta',
-      description: 'Desarrollo sitios web modernos, rápidos y optimizados para hacer crecer tu negocio. Sin complicaciones técnicas, con resultados reales.',
-      cta: 'Empezar proyecto',
-      secondary: 'Ver servicios',
-      companies: 'Confianza de empresas como',
+      badge: 'Professional web development',
+      title: 'I transform your idea into an experience digital that connects',
+      description: 'I develop modern, fast and optimized websites to grow your business. No technical complications, with real results.',
+      cta: 'Start project',
+      secondary: 'View services',
+      companies: 'Trusted by companies like',
     },
     // Services
     services: {
@@ -177,13 +177,22 @@ export const i18n = {
         },
       ],
     },
-    // Contact
+// Contact
     contact: {
       title: '¿Listo para dar el siguiente paso?',
       description: 'Cuéntame sobre tu proyecto. Sin compromiso, sin presión. Solo una conversación para ver cómo puedo ayudarte.',
       cta: 'Agendar llamada gratis',
       email: 'contacto@christophervaldivia.tech',
       trust: 'Respondo en menos de 24 horas · Sin spam · 100% confidencial',
+      form: {
+        name: 'Nombre',
+        placeholderName: 'Tu nombre',
+        email: 'Correo electrónico',
+        placeholderEmail: 'Tu correo electrónico',
+        message: 'Mensaje',
+        placeholderMessage: '¿En qué te puedo ayudar?',
+        submit: 'Enviar mensaje'
+      },
     },
     // Footer
     footer: {
@@ -360,13 +369,22 @@ export const i18n = {
         },
       ],
     },
-    // Contact
+// Contact
     contact: {
       title: 'Ready for the next step?',
       description: 'Tell me about your project. No commitment, no pressure. Just a conversation to see how I can help you.',
       cta: 'Schedule free call',
       email: 'contacto@christophervaldivia.tech',
       trust: 'I respond in less than 24 hours · No spam · 100% confidential',
+      form: {
+        name: 'Name',
+        placeholderName: 'Your name',
+        email: 'Email',
+        placeholderEmail: 'Your email',
+        message: 'Message',
+        placeholderMessage: 'How can I help you?',
+        submit: 'Send message'
+      },
     },
     // Footer
     footer: {

@@ -20,6 +20,9 @@ const texts = i18n[lang];
 const heroTitle = title || texts.hero.title;
 const heroDesc = description || texts.hero.description;
 const heroCTA = ctaText || texts.hero.cta;
+
+// Split title into lines for translation
+const titleLines = heroTitle.split('experiencia digital');
 ---
 
 <section
@@ -43,9 +46,9 @@ const heroCTA = ctaText || texts.hero.cta;
 
       {/* Main headline */}
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 animate-fade-up opacity-0 stagger-1 leading-tight hero-title text-foreground">
-        <span class="block">Transforma tu idea en una</span>
+        <span class="block">{titleLines[0]}</span>
         <span class="block text-primary">experiencia digital</span>
-        <span class="block">que conecta</span>
+        <span class="block">{titleLines[1] || ''}</span>
       </h1>
 
       {/* Subtitle */}
@@ -58,7 +61,7 @@ const heroCTA = ctaText || texts.hero.cta;
         <a 
           href={ctaUrl} 
           class="glow group px-8 py-3 inline-flex items-center gap-2 w-full sm:w-auto justify-center text-base font-medium bg-primary text-primary-foreground rounded-lg transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary active:scale-95 hero-cta"
-          aria-label="Empezar proyecto ahora"
+          aria-label={heroCTA}
         >
           {heroCTA}
           <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">→</span>
@@ -66,7 +69,7 @@ const heroCTA = ctaText || texts.hero.cta;
         <a 
           href="#servicios" 
           class="px-8 py-3 inline-flex items-center w-full sm:w-auto justify-center text-base font-medium border border-border/50 bg-secondary/50 text-foreground hover:bg-secondary rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary active:scale-95"
-          aria-label="Ver nuestros servicios"
+          aria-label={texts.hero.secondary}
         >
           {texts.hero.secondary}
         </a>
@@ -99,6 +102,32 @@ const heroCTA = ctaText || texts.hero.cta;
     
     const companiesLabelEl = document.querySelector('.hero-companies-label');
     if (companiesLabelEl) companiesLabelEl.textContent = texts.hero.companies;
+    
+    const titleEl = document.querySelector('.hero-title');
+    if (titleEl) {
+      const titleLines = texts.hero.title.split('experiencia digital');
+      const spans = titleEl.querySelectorAll('span');
+      if (spans.length >= 3) {
+        spans[0].textContent = titleLines[0] || '';
+        spans[1].textContent = 'experiencia digital';
+        spans[2].textContent = titleLines[1] || '';
+      }
+    }
+    
+    const descEl = document.querySelector('.hero-description');
+    if (descEl) descEl.textContent = texts.hero.description;
+    
+    const ctaEl = document.querySelector('.hero-cta');
+    if (ctaEl) {
+      ctaEl.textContent = texts.hero.cta + ' →';
+      ctaEl.setAttribute('aria-label', texts.hero.cta);
+    }
+    
+    const secondaryCta = document.querySelector('a[aria-label]') as HTMLAnchorElement;
+    if (secondaryCta && secondaryCta.getAttribute('aria-label') !== texts.hero.cta) {
+      secondaryCta.textContent = texts.hero.secondary;
+      secondaryCta.setAttribute('aria-label', texts.hero.secondary);
+    }
   }
   
   document.addEventListener('languageChanged', updateHeroTexts);
